@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.UserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top">
+
+            <ImageView
+                android:id="@+id/avatarView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TitleStyle"
+                android:text="Krzys"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                style="@style/LabelStyle"
+                android:text="@string/scoreLabel"/>
+
+            <TextView
+                android:id="@+id/scoreValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ValueStyle"
+                android:text="1782"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                style="@style/LabelStyle"
+                android:text="@string/walkLabel"/>
+
+            <TextView
+                android:id="@+id/walkValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ValueStyle"
+                android:text="23.5 km"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                style="@style/LabelStyle"
+                android:text="@string/runLabel"/>
+
+            <TextView
+                android:id="@+id/runValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ValueStyle"
+                android:text="11.4 km"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                style="@style/LabelStyle"
+                android:text="@string/bikeLabel"/>
+
+            <TextView
+                android:id="@+id/bikeValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ValueStyle"
+                android:text="108.2 km"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                style="@style/LabelStyle"
+                android:text="@string/levelLabel"/>
+
+            <TextView
+                android:id="@+id/levelValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ValueStyle"
+                android:text="10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:id="@+id/progressValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                style="@style/ProgressStyle"
+                android:text="245/1000"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/progressBarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
