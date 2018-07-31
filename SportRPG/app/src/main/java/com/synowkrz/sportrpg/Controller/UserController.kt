@@ -7,4 +7,6 @@ interface UserController {
 
     fun getUserDataFromDb(name: String) : User
     fun insertUserData(user : User)
+    fun deleteUser(userName: String)
+    fun deleteAllUsers()
 }

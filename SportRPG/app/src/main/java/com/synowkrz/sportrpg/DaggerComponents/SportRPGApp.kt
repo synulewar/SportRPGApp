@@ -17,7 +17,7 @@ class SportRPGApp : Application() {
         graph.inject(this)
     }
 
-    fun initDaggerFromUserActivity(activity: UserActivity) {
-        graph.inject(activity)
+    fun getAppComponent() : AppComponent {
+        return graph
     }
 }

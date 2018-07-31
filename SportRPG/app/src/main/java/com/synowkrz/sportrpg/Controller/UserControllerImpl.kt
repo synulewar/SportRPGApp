@@ -2,12 +2,17 @@ package com.synowkrz.sportrpg.Controller
 
 import android.util.Log
 import com.synowkrz.sportrpg.Model.User
-import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Dao.UserDao
-import dagger.Component
 import javax.inject.Inject
 
 class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserController {
+    override fun deleteUser(userName: String) {
+        userDao.deleteUser(userName)
+    }
+
+    override fun deleteAllUsers() {
+        userDao.deleteAll()
+    }
 
     val TAG = "KRZYS UserController"
 

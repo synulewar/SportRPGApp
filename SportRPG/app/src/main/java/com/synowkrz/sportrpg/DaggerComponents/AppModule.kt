@@ -3,6 +3,9 @@ package com.synowkrz.sportrpg.DaggerComponents
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import com.synowkrz.sportrpg.Controller.LoginControllerImpl
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.Controller.UserControllerImpl
 import com.synowkrz.sportrpg.Dao.UserDao
@@ -24,6 +27,9 @@ class AppModule(private val app: Application) {
                     .allowMainThreadQueries()
                     .build()
     @Provides
+    fun provideSharedPreferences(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)
+
+    @Provides
     @Singleton
     fun provideUserTable(sportRPGDatabase: SportRPGDatabase) : UserDao = sportRPGDatabase.userDataDao()
 
@@ -31,7 +37,6 @@ class AppModule(private val app: Application) {
     @Singleton
     fun provideUserControl(userDao: UserDao) : UserController = UserControllerImpl(userDao)
 
-
-
-
+    @Provides
+    fun provideLoginControl(sharedPreferences: SharedPreferences) = LoginControllerImpl(sharedPreferences)
 }

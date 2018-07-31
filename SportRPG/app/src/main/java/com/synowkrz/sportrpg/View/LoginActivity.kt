@@ -18,11 +18,9 @@ class LoginActivity : AppCompatActivity() {
 
     val TAG = "KRZYS"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        initDagger(application)
         singIn.setOnClickListener { view ->  validateCredentials(username.text.toString(), password.text.toString()) }
     }
 
@@ -35,8 +33,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initDagger(app: Application): AppComponent =
-            DaggerAppComponent.builder()
-                    .appModule(AppModule(app))
-                    .build()
 }
