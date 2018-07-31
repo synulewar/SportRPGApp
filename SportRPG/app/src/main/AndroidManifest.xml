@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.UserActivity" />
+        <activity android:name=".View.NewAccountActivity" />
     </application>
 
 </manifest>

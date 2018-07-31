@@ -9,4 +9,5 @@
     <string name="runLabel">Run:</string>
     <string name="bikeLabel">Bike:</string>
     <string name="levelLabel">Level:</string>
+    <string name="emailHint">email</string>
 </resources>
