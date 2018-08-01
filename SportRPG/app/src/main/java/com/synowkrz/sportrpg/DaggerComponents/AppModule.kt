@@ -5,9 +5,8 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.synowkrz.sportrpg.Controller.LoginControllerImpl
-import com.synowkrz.sportrpg.Controller.UserController
-import com.synowkrz.sportrpg.Controller.UserControllerImpl
+import com.synowkrz.sportrpg.Controller.*
+import com.synowkrz.sportrpg.Dao.CredentialsDao
 import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Database.SportRPGDatabase
 import dagger.Module
@@ -35,8 +34,15 @@ class AppModule(private val app: Application) {
 
     @Provides
     @Singleton
+    fun provideCredentialsTable(sportRPGDatabase: SportRPGDatabase) : CredentialsDao = sportRPGDatabase.credentialsDao()
+
+    @Provides
+    @Singleton
     fun provideUserControl(userDao: UserDao) : UserController = UserControllerImpl(userDao)
 
     @Provides
-    fun provideLoginControl(sharedPreferences: SharedPreferences) = LoginControllerImpl(sharedPreferences)
+    fun provideLoginControl(sharedPreferences: SharedPreferences, credentialsDao: CredentialsDao) : LoginController = LoginControllerImpl(sharedPreferences, credentialsDao)
+
+    @Provides
+    fun provideNewActivityController(credentialsDao: CredentialsDao, sharedPreferences: SharedPreferences) : NewAccountController = NewAccountControllerImpl(credentialsDao, sharedPreferences)
 }
