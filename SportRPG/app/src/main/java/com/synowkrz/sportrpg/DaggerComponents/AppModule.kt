@@ -44,5 +44,5 @@ class AppModule(private val app: Application) {
     fun provideLoginControl(sharedPreferences: SharedPreferences, credentialsDao: CredentialsDao) : LoginController = LoginControllerImpl(sharedPreferences, credentialsDao)
 
     @Provides
-    fun provideNewActivityController(credentialsDao: CredentialsDao, sharedPreferences: SharedPreferences) : NewAccountController = NewAccountControllerImpl(credentialsDao, sharedPreferences)
+    fun provideNewActivityController(credentialsDao: CredentialsDao, userDao: UserDao, sharedPreferences: SharedPreferences) : NewAccountController = NewAccountControllerImpl(credentialsDao, userDao, sharedPreferences)
 }

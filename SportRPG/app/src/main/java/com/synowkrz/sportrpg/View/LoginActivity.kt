@@ -8,11 +8,12 @@ import com.synowkrz.sportrpg.R
 import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.LoginController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
+import com.synowkrz.sportrpg.Model.Credentials
 
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginView {
 
     val TAG = "KRZYS"
 
@@ -23,25 +24,31 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initDagger()
-        singIn.setOnClickListener { startUserActivity(username.text.toString(), password.text.toString()) }
+        singIn.setOnClickListener { loginController.validateCredentials(Credentials("", usernameEdit.text.toString(), passwordEdit.text.toString()), this) }
         createNew.setOnClickListener {startNewAccountActivity()}
     }
 
-    fun startUserActivity(username: String, password: String) {
-        Log.d(TAG, "Username " + username + " Password "+ password)
-        if (loginController.validateCredentials()) {
-           var intent = Intent(this, UserActivity::class.java)
-            intent.putExtra(ContractValues.USER_KEY, username)
-            startActivity(intent)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == ContractValues.NEW_ACCOUNT_ACTIVITY) {
+            loginController.onNewAccountCreated(this)
         }
+    }
+
+    override fun updateCredentials(username: String, password: String) {
+        usernameEdit.setText(username)
+        passwordEdit.setText(password)
+    }
+
+    override fun startUserActivity(username: String) {
+        var intent = Intent(this, UserActivity::class.java)
+        intent.putExtra(ContractValues.USER_KEY, username)
+        startActivity(intent)
     }
 
     fun startNewAccountActivity() {
         Log.d(TAG, "startNewAccountActivity")
-        if (loginController.validateCredentials()) {
-            var intent = Intent(this, NewAccountActivity::class.java)
-            startActivityForResult(intent, ContractValues.NEW_ACCOUNT_ACTIVITY)
-        }
+        var intent = Intent(this, NewAccountActivity::class.java)
+        startActivityForResult(intent, ContractValues.NEW_ACCOUNT_ACTIVITY)
     }
 
     fun initDagger() {

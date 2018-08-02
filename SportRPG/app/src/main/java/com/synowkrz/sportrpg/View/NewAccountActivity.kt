@@ -3,6 +3,7 @@ package com.synowkrz.sportrpg.View
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.NewAccountController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.Credentials
@@ -29,9 +30,12 @@ class NewAccountActivity : Activity() {
             Log.d(TAG, "User input " + email + " " + username + " " + password)
 
             if (newAccountController.addNewCredentials(Credentials(email, username, password))) {
-
-
+                setResult(RESULT_OK)
+            } else {
+                setResult(RESULT_CANCELED)
             }
+            Log.d(TAG, "Terax powinna sie aktywnosc skonczyc")
+            finish()
         } }
 
     }
