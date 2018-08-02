@@ -16,8 +16,8 @@
             android:id="@+id/emailEdit"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:inputType="text"
-            android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:hint="@string/emailHint"
             android:layout_marginBottom="50dp"/>
 
         <EditText

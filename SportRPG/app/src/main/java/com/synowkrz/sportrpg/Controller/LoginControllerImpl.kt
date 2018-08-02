@@ -13,9 +13,9 @@ class LoginControllerImpl @Inject constructor(var sharedPreferences: SharedPrefe
     val TAG = "KRZYS"
 
     override fun validateCredentials(credentials: Credentials, loginView: LoginView) {
-        var credentialsFromDB = credentialsDao.getCredentials(credentials.name)
-        Log.d(TAG, "Credentials from DB " + credentialsFromDB + " credential from user")
-        if (credentialsFromDB.password == credentials.password) {
+        var credentialsFromDB = credentialsDao.getCredentials(credentials.email)
+        Log.d(TAG, "Credentials from DB " + credentialsFromDB + " credential from user " + credentials)
+        if (credentialsFromDB != null && credentialsFromDB.password == credentials.password) {
             loginView.startUserActivity(credentials.name)
         }
 
