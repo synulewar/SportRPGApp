@@ -5,7 +5,7 @@ class ContractValues {
         val USER_KEY = "user"
         val KRZYSIO = "Krzysio"
         val NEW_ACCOUNT_ACTIVITY = 1
-        val STORED_USERNAME = "stored_username"
+        val STORED_EMAIL = "stored_email"
         val STORED_PASSWORD = "stored_password"
     }
 }

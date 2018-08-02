@@ -22,25 +22,20 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
         credentialsDao.insertCredentials(credentials)
         userDao.insert(User(credentials.name))
         sharedPreferences.edit()
-                .putString(ContractValues.STORED_USERNAME,  credentials.name)
+                .putString(ContractValues.STORED_EMAIL,  credentials.name)
                 .putString(ContractValues.STORED_PASSWORD, credentials.password)
                 .commit()
         return true
     }
 
     private fun knownCredentials(credentials: Credentials) : Boolean {
-        var credentialsFromDB = getCredentials(credentials.email)
-        credentialsFromDB
-        Log.d(TAG, "Credentials from DB ")
+        var credentialsFromDB = credentialsDao.getCredentials(credentials.email)
+        Log.d(TAG, "Credentials from DB " + credentialsFromDB)
         return credentialsFromDB != null || checkCredentialsRemote()
     }
 
-    fun getCredentials(email: String) {
-        credentialsDao.getCredentials(email)
-    }
-
     fun checkCredentialsRemote() : Boolean {
-        TODO()
+        return false
     }
 
     fun createRemoteAccount() {

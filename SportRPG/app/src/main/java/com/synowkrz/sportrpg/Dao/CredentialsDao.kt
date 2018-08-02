@@ -13,7 +13,7 @@ interface CredentialsDao {
     fun getAllCredentials() : List<Credentials>
 
     @Query("SELECT * from credentialTable where email = :email")
-    fun getCredentials(email: String) : Credentials
+    fun getCredentials(email: String) : Credentials?
 
     @Insert(onConflict = REPLACE)
     fun insertCredentials(credentials: Credentials)
