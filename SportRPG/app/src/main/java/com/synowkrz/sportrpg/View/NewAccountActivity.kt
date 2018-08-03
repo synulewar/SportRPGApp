@@ -11,36 +11,46 @@ import com.synowkrz.sportrpg.R
 import kotlinx.android.synthetic.main.activity_new_account.*
 import javax.inject.Inject
 
-class NewAccountActivity : Activity() {
+class NewAccountActivity : Activity(), NewAccountView {
 
     val TAG = "KRZYS"
 
     @Inject
     lateinit var newAccountController: NewAccountController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_account)
         initDagger()
 
-        createNew.setOnClickListener {kotlin.run {
+        createNew.setOnClickListener {v ->
             var email = emailText.text.toString()
             var username = usernameText.text.toString()
             var password = passwordText.text.toString()
             Log.d(TAG, "User input " + email + " " + username + " " + password)
-
-            if (newAccountController.addNewCredentials(Credentials(email, username, password))) {
-                setResult(RESULT_OK)
-            } else {
-                setResult(RESULT_CANCELED)
-            }
-            finish()
-        } }
+            newAccountController.addNewCredentials(Credentials(email, username, password))
+        }
 
     }
 
+    override fun setResultAndFinish(result: Int) {
+        setResult(result)
+        finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        newAccountController.registerView(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        newAccountController.unRegisterView()
+    }
 
     fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
     }
+
 }

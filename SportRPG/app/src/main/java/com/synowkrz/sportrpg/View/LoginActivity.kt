@@ -25,18 +25,21 @@ class LoginActivity : AppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initDagger()
-        singIn.setOnClickListener { loginController.validateCredentials(Credentials(emailEdit.text.toString(), passwordEdit.text.toString()), this) }
+        singIn.setOnClickListener { loginController.validateCredentials(Credentials(emailEdit.text.toString(), passwordEdit.text.toString())) }
         createNew.setOnClickListener {startNewAccountActivity()}
+        loginController.registerView(this)
+        loginController.updateLogin()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ContractValues.NEW_ACCOUNT_ACTIVITY) {
-            loginController.onNewAccountCreated(this)
+            loginController.updateLogin()
         }
     }
 
-    override fun updateCredentials(username: String, password: String) {
-        emailEdit.setText(username)
+    override fun updateCredentials(email: String, password: String) {
+        Log.d(TAG, "updateCredentials " + email + " " + password)
+        emailEdit.setText(email)
         passwordEdit.setText(password)
     }
 
@@ -55,6 +58,16 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loginController.registerView(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        loginController.unRegisterView()
     }
 
 }

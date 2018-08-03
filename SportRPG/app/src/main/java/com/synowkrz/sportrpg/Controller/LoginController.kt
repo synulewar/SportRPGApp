@@ -5,7 +5,9 @@ import com.synowkrz.sportrpg.View.LoginView
 
 interface LoginController {
 
-    fun validateCredentials(credentials: Credentials, loginView: LoginView)
-    fun onNewAccountCreated(loginView: LoginView)
+    fun validateCredentials(credentials: Credentials)
+    fun updateLogin()
+    fun registerView(view: LoginView)
+    fun unRegisterView()
 
 }

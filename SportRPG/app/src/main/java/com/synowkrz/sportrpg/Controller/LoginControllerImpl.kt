@@ -12,20 +12,31 @@ class LoginControllerImpl @Inject constructor(var sharedPreferences: SharedPrefe
 
     val TAG = "KRZYS"
 
-    override fun validateCredentials(credentials: Credentials, loginView: LoginView) {
+    lateinit var loginView: LoginView
+    var viewRegistered : Boolean = false
+    override fun registerView(view: LoginView) {
+        loginView = view
+        viewRegistered = true
+        Log.d(TAG, "registerView")
+    }
+
+    override fun unRegisterView() {
+        Log.d(TAG, "unRegisterView")
+        viewRegistered = false
+    }
+
+    override fun validateCredentials(credentials: Credentials) {
         var credentialsFromDB = credentialsDao.getCredentials(credentials.email)
         Log.d(TAG, "Credentials from DB " + credentialsFromDB + " credential from user " + credentials)
-        if (credentialsFromDB != null && credentialsFromDB.password == credentials.password) {
+        if (credentialsFromDB != null && credentialsFromDB.password == credentials.password && viewRegistered) {
             loginView.startUserActivity(credentials.email)
         }
-
     }
 
-    override fun onNewAccountCreated(loginView: LoginView) {
-        var username = sharedPreferences.getString(ContractValues.STORED_EMAIL, "")
+    override fun updateLogin() {
+        var email = sharedPreferences.getString(ContractValues.STORED_EMAIL, "")
         var password = sharedPreferences.getString(ContractValues.STORED_PASSWORD, "")
-        loginView.updateCredentials(username, password)
+        Log.d(TAG, "updateLogin " + email + " " + password)
+        loginView.updateCredentials(email, password)
     }
-
-
 }
