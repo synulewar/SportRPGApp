@@ -22,15 +22,14 @@ class UserActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_main_layout)
         initDagger()
-        initDBdata()
-        var username = intent.extras.getString(ContractValues.USER_KEY)
-        Log.d(TAG, "Start user activity with username " + username)
-        loadUserScreen()
+        var email = intent.extras.getString(ContractValues.EMAIL_KEY)
+        Log.d(TAG, "Start user activity with email" + email)
+        loadUserScreen(email)
     }
 
-    fun loadUserScreen() {
+    fun loadUserScreen(email: String) {
         avatarView.setImageResource(R.drawable.son);
-        bindUserWithView(userController.getUserDataFromDb(ContractValues.KRZYSIO))
+        bindUserWithView(userController.getUserDataFromDb(email))
         progressBarView.max = 1000
         progressBarView.progress = 245
     }
@@ -45,11 +44,5 @@ class UserActivity : Activity() {
         walkValueView.setText(user.walkDis.toString())
         runValueView.setText(user.runDis.toString())
         bikeValueView.setText(user.bikeDis.toString())
-    }
-
-    fun initDBdata() {
-        userController.deleteAllUsers()
-        var user = User(ContractValues.KRZYSIO, 21.1, 8.7, 30.1, 1456)
-        userController.insertUserData(user)
     }
 }

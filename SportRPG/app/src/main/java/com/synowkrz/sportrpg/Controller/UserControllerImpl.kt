@@ -16,10 +16,10 @@ class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserControl
 
     val TAG = "KRZYS UserController"
 
-    override fun getUserDataFromDb(name: String) : User {
-        val user = userDao.getUser(name)
+    override fun getUserDataFromDb(email: String) : User {
+        val user = userDao.getUser(email)
         Log.d(TAG, "Getting user " + user)
-        return userDao.getUser(name)
+        return userDao.getUser(email)
     }
 
     override fun insertUserData(user: User) {

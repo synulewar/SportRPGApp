@@ -16,7 +16,7 @@ class LoginControllerImpl @Inject constructor(var sharedPreferences: SharedPrefe
         var credentialsFromDB = credentialsDao.getCredentials(credentials.email)
         Log.d(TAG, "Credentials from DB " + credentialsFromDB + " credential from user " + credentials)
         if (credentialsFromDB != null && credentialsFromDB.password == credentials.password) {
-            loginView.startUserActivity(credentials.name)
+            loginView.startUserActivity(credentials.email)
         }
 
     }

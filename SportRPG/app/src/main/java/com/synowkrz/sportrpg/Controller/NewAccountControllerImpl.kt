@@ -19,16 +19,20 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
             Log.d(TAG, "bedzie false w credentialachh")
             return false
         }
+        Log.d(TAG, String.format("Store crednetials %s in DB", credentials))
         credentialsDao.insertCredentials(credentials)
-        userDao.insert(User(credentials.name))
+        userDao.insert(User(credentials.email, credentials.name))
         sharedPreferences.edit()
-                .putString(ContractValues.STORED_EMAIL,  credentials.name)
+                .putString(ContractValues.STORED_EMAIL,  credentials.email)
                 .putString(ContractValues.STORED_PASSWORD, credentials.password)
                 .commit()
+        var fetchCred = credentialsDao.getAllCredentials()
+        for (credential in fetchCred) Log.d(TAG, credential.toString())
         return true
     }
 
     private fun knownCredentials(credentials: Credentials) : Boolean {
+        Log.d(TAG, String.format("Check if crednetials %s in DB", credentials))
         var credentialsFromDB = credentialsDao.getCredentials(credentials.email)
         Log.d(TAG, "Credentials from DB " + credentialsFromDB)
         return credentialsFromDB != null || checkCredentialsRemote()

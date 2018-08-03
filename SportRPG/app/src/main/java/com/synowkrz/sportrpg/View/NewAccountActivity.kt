@@ -34,7 +34,6 @@ class NewAccountActivity : Activity() {
             } else {
                 setResult(RESULT_CANCELED)
             }
-            Log.d(TAG, "Terax powinna sie aktywnosc skonczyc")
             finish()
         } }
 

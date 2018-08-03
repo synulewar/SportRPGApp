@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initDagger()
-        Log.d(TAG, "Login onCreateView")
         singIn.setOnClickListener { loginController.validateCredentials(Credentials(emailEdit.text.toString(), passwordEdit.text.toString()), this) }
         createNew.setOnClickListener {startNewAccountActivity()}
     }
@@ -41,10 +40,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
         passwordEdit.setText(password)
     }
 
-    override fun startUserActivity(username: String) {
+    override fun startUserActivity(email: String) {
         Log.d(TAG, "startUserActivity")
         var intent = Intent(this, UserActivity::class.java)
-        intent.putExtra(ContractValues.USER_KEY, username)
+        intent.putExtra(ContractValues.EMAIL_KEY, email)
         startActivity(intent)
     }
 
