@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         createNew.setOnClickListener {startNewAccountActivity()}
         loginController.registerView(this)
         loginController.updateLogin()
+        loginController.validateCredentials(Credentials(emailEdit.text.toString(), passwordEdit.text.toString()))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

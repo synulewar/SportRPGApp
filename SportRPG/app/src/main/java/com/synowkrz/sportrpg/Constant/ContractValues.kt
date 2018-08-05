@@ -8,4 +8,6 @@ class ContractValues {
         val STORED_EMAIL = "stored_email"
         val STORED_PASSWORD = "stored_password"
     }
+
+
 }

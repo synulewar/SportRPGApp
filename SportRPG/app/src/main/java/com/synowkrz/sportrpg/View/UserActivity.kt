@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.synowkrz.sportrpg.R
 import com.synowkrz.sportrpg.Constant.ContractValues
+import com.synowkrz.sportrpg.Constant.Level
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.User
@@ -40,8 +41,10 @@ class UserActivity : Activity(), UserView {
         runValueView.setText(user.runDis.toString())
         bikeValueView.setText(user.bikeDis.toString())
         avatarView.setImageResource(R.drawable.son);
-        progressBarView.max = 1000
-        progressBarView.progress = 245
+        levelValueView.setText(user.level.toString())
+        progressValueView.setText(String.format("%d/%d", user.experience, Level.levelUpLimit(user.level)))
+        progressBarView.progress = user.experience
+        progressBarView.max = Level.levelUpLimit(user.level)
     }
 
     override fun onResume() {
