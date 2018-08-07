@@ -10,4 +10,7 @@
     <string name="bikeLabel">Bike:</string>
     <string name="levelLabel">Level:</string>
     <string name="emailHint">email</string>
+    <string name="training">Training</string>
+    <string name="character">Character</string>
+    <string name="dungeon">Dungeon</string>
 </resources>
