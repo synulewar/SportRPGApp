@@ -165,6 +165,7 @@
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomMenu"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="?android:attr/windowBackground"

@@ -3,6 +3,7 @@ package com.synowkrz.sportrpg.View
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.synowkrz.sportrpg.R
 import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Constant.Level
@@ -27,6 +28,23 @@ class UserActivity : Activity(), UserView {
         Log.d(TAG, "Start user activity with email" + email)
         userController.registerView(this)
         userController.loadUserData(email)
+        bottomMenu.setOnNavigationItemSelectedListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.action_training -> {
+                    Toast.makeText(applicationContext, "Training", Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.action_character -> {
+                    Toast.makeText(applicationContext, "Character", Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.action_dungeon -> {
+                    Toast.makeText(applicationContext, "Dungeon", Toast.LENGTH_LONG).show()
+                    true
+                }
+            }
+            false
+        }
     }
 
     fun initDagger() {

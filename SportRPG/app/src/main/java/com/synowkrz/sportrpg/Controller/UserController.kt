@@ -7,8 +7,6 @@ import dagger.Component
 interface UserController {
 
     fun loadUserData(email: String)
-
-
     fun getUserDataFromDb(email: String) : User
     fun insertUserData(user : User)
     fun deleteUser(userName: String)
