@@ -1,6 +1,7 @@
 package com.synowkrz.sportrpg.View
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -31,7 +32,9 @@ class UserActivity : Activity(), UserView {
         bottomMenu.setOnNavigationItemSelectedListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.action_training -> {
-                    Toast.makeText(applicationContext, "Training", Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "startTrainingActivity")
+                    var intent = Intent(this, TrainingActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.action_character -> {

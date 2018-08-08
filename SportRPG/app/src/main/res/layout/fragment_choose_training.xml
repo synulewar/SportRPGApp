@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/runButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/run"
+            android:layout_margin="50dp"/>
+
+        <ImageButton
+            android:id="@+id/bikeButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/bike"
+            android:layout_margin="50dp"/>
+
+        <ImageButton
+            android:id="@+id/walkButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/walk"
+            android:layout_margin="50dp"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
