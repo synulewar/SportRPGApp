@@ -19,6 +19,7 @@
         <activity android:name=".View.UserActivity" />
         <activity android:name=".View.NewAccountActivity" />
         <activity android:name=".View.TrainingActivity" />
+        <activity android:name=".View.ChooseTrainingActivity" />
     </application>
 
 </manifest>

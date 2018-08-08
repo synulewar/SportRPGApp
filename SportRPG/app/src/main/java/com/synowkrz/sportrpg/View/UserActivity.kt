@@ -10,6 +10,7 @@ import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Constant.Level
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
+import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.Model.User
 import kotlinx.android.synthetic.main.user_main_layout.*
 import javax.inject.Inject
@@ -33,8 +34,7 @@ class UserActivity : Activity(), UserView {
             when(menuItem.itemId) {
                 R.id.action_training -> {
                     Log.d(TAG, "startTrainingActivity")
-                    var intent = Intent(this, TrainingActivity::class.java)
-                    startActivity(intent)
+                    startChooserActivity()
                     true
                 }
                 R.id.action_character -> {
@@ -66,6 +66,24 @@ class UserActivity : Activity(), UserView {
         progressValueView.setText(String.format("%d/%d", user.experience, Level.levelUpLimit(user.level)))
         progressBarView.progress = user.experience
         progressBarView.max = Level.levelUpLimit(user.level)
+    }
+
+
+    fun startChooserActivity() {
+        Log.d(TAG, "startNewAccountActivity")
+        var intent = Intent(this, ChooseTrainingActivity::class.java)
+        startActivityForResult(intent, ContractValues.CHOOSE_TRAINING_ACTIVITY)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == ContractValues.CHOOSE_TRAINING_ACTIVITY) {
+            if (data != null) {
+                var trainingType = data.getIntExtra(ContractValues.ACTIVITY_TYPE_KEY, 0)
+                var intent = Intent(this, TrainingActivity::class.java)
+                intent.putExtra(ContractValues.ACTIVITY_TYPE_KEY, trainingType)
+                startActivityForResult(intent, ContractValues.TRAINING_ACTIVITY)
+            }
+        }
     }
 
     override fun onResume() {
