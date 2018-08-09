@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.synowkrz.sportrpg.Controller.*
 import com.synowkrz.sportrpg.Dao.CredentialsDao
+import com.synowkrz.sportrpg.Dao.TrainingDao
 import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Database.SportRPGDatabase
 import dagger.Module
@@ -38,6 +39,10 @@ class AppModule(private val app: Application) {
 
     @Provides
     @Singleton
+    fun provideTrainingTable(sportRPGDatabase: SportRPGDatabase) : TrainingDao = sportRPGDatabase.trainingDao()
+
+    @Provides
+    @Singleton
     fun provideUserControl(userDao: UserDao) : UserController = UserControllerImpl(userDao)
 
     @Provides
@@ -45,4 +50,7 @@ class AppModule(private val app: Application) {
 
     @Provides
     fun provideNewActivityController(credentialsDao: CredentialsDao, userDao: UserDao, sharedPreferences: SharedPreferences) : NewAccountController = NewAccountControllerImpl(credentialsDao, userDao, sharedPreferences)
+
+    @Provides
+    fun provideTrainingPresenter(trainingDao: TrainingDao) : TrainingPresenter = TrainingPresenterImpl(trainingDao)
 }
