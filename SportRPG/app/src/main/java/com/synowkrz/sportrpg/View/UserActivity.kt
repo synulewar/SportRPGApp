@@ -1,8 +1,12 @@
 package com.synowkrz.sportrpg.View
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
 import com.synowkrz.sportrpg.R
@@ -10,7 +14,6 @@ import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Constant.Level
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
-import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.Model.User
 import kotlinx.android.synthetic.main.user_main_layout.*
 import javax.inject.Inject
@@ -34,19 +37,16 @@ class UserActivity : Activity(), UserView {
             when(menuItem.itemId) {
                 R.id.action_training -> {
                     Log.d(TAG, "startTrainingActivity")
-                    startChooserActivity()
-                    true
+                    verifyPermissionsAndStartTraining()
                 }
                 R.id.action_character -> {
                     Toast.makeText(applicationContext, "Character", Toast.LENGTH_LONG).show()
-                    true
                 }
                 R.id.action_dungeon -> {
                     Toast.makeText(applicationContext, "Dungeon", Toast.LENGTH_LONG).show()
-                    true
                 }
             }
-            false
+            true
         }
     }
 
@@ -94,5 +94,43 @@ class UserActivity : Activity(), UserView {
     override fun onPause() {
         super.onPause()
         userController.unRegisterView()
+    }
+
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+
+        Log.d(TAG, "on request result")
+
+        for (i in 0..permissions.size - 1) {
+            Log.d(TAG,permissions[i] + " " + grantResults[i])
+        }
+        when (requestCode) {
+            ContractValues.PERMISSION_REQUEST -> {
+                if ((grantResults.isNotEmpty())) {
+                    for (decision in grantResults) {
+                        if (decision != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(applicationContext, "App wont work without permissions", Toast.LENGTH_LONG).show()
+                            return
+                        }
+                        startChooserActivity()
+                    }
+                }
+
+            }
+            else -> {
+                Log.e(TAG, "Wrong permission code")
+            }
+        }
+    }
+
+    private fun verifyPermissionsAndStartTraining() {
+        var location = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        var storage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        if (!location or !storage) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE), ContractValues.PERMISSION_REQUEST)
+        } else {
+            startChooserActivity()
+        }
     }
 }

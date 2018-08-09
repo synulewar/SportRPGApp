@@ -10,6 +10,7 @@ class ContractValues {
         val STORED_EMAIL = "stored_email"
         val STORED_PASSWORD = "stored_password"
         val ACTIVITY_TYPE_KEY = "activity_type"
+        val PERMISSION_REQUEST = 1
 
     }
 

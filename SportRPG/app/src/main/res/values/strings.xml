@@ -13,4 +13,15 @@
     <string name="training">Training</string>
     <string name="character">Character</string>
     <string name="dungeon">Dungeon</string>
+    <string name="time">Time</string>
+    <string name="startTime">00:00:00</string>
+    <string name="startDistance">0.0 km</string>
+    <string name="distanceLabel">Distance</string>
+    <string name="start">start</string>
+    <string name="finish">finish</string>
+    <string name="startButtonText">Start</string>
+    <string name="stopButtonText">Stop</string>
+    <string name="resumeButtonText">Resume</string>
+    <string name="finishButtonText">Finish</string>
+    <string name="pausedButtonText">Paused</string>
 </resources>
