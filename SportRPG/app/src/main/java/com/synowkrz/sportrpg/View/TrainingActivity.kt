@@ -14,7 +14,12 @@ import kotlinx.android.synthetic.main.activity_training.*
 import javax.inject.Inject
 
 class TrainingActivity : AppCompatActivity(), TrainingView {
+    override fun startTraining() {
+        trainingPresenter.startTraining()
+    }
+
     override fun setButtons(trainingStates: TrainingStates) {
+        Log.d(TAG, "setButtons " + trainingStates)
        when(trainingStates){
            TrainingStates.STOPPED -> {
                startResumeButton.text = getString(R.string.startButtonText)
@@ -67,7 +72,8 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         trainingPresenter.registerView(this)
         var trainingType = TrainingType.values()[intent.getIntExtra(ContractValues.ACTIVITY_TYPE_KEY, 0)]
         trainingPresenter.initTraining(trainingType)
-
+        startResumeButton.setOnClickListener {trainingPresenter.onStartPausePressed()}
+        finishStopButton.setOnClickListener {trainingPresenter.onStopFinishPressed()}
     }
 
     fun initDagger() {

@@ -7,4 +7,7 @@ interface TrainingPresenter {
     fun initTraining(trainingType: TrainingType)
     fun startTraining()
     fun registerView(view : TrainingView)
+    fun onStartPausePressed()
+    fun onStopFinishPressed()
+    fun startTimerAndDistanceTracker()
 }

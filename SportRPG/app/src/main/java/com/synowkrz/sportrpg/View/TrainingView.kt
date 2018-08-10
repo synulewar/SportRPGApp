@@ -9,4 +9,5 @@ interface TrainingView {
     fun setDistance(distance : Double)
     fun chooseTrainignImage(trainingType: TrainingType)
     fun setButtons(trainingStates: TrainingStates)
+    fun startTraining()
 }
