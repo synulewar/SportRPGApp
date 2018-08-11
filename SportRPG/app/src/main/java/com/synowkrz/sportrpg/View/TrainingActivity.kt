@@ -1,8 +1,12 @@
 package com.synowkrz.sportrpg.View
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.TrainingPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
@@ -14,6 +18,11 @@ import kotlinx.android.synthetic.main.activity_training.*
 import javax.inject.Inject
 
 class TrainingActivity : AppCompatActivity(), TrainingView {
+    override fun displayFinalResults() {
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
     override fun startTraining() {
         trainingPresenter.startTraining()
     }
@@ -64,6 +73,8 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
     @Inject
     lateinit var trainingPresenter: TrainingPresenter
 
+    lateinit var fusedLocationClient : FusedLocationProviderClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "Training on create")
@@ -74,6 +85,7 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         trainingPresenter.initTraining(trainingType)
         startResumeButton.setOnClickListener {trainingPresenter.onStartPausePressed()}
         finishStopButton.setOnClickListener {trainingPresenter.onStopFinishPressed()}
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
     fun initDagger() {

@@ -10,4 +10,5 @@ interface TrainingView {
     fun chooseTrainignImage(trainingType: TrainingType)
     fun setButtons(trainingStates: TrainingStates)
     fun startTraining()
+    fun displayFinalResults()
 }

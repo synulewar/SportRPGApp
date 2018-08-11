@@ -83,6 +83,8 @@ class UserActivity : Activity(), UserView {
                 intent.putExtra(ContractValues.ACTIVITY_TYPE_KEY, trainingType)
                 startActivityForResult(intent, ContractValues.TRAINING_ACTIVITY)
             }
+        } else if (requestCode == ContractValues.TRAINING_ACTIVITY) {
+            Toast.makeText(applicationContext, "Training finished!", Toast.LENGTH_LONG).show()
         }
     }
 

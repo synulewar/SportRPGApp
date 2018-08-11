@@ -42,6 +42,7 @@ dependencies {
     implementation "org.osmdroid:osmdroid-android:$osm_version"
     implementation "org.osmdroid:osmdroid-wms:$osm_version"
     implementation "org.osmdroid:osmdroid-mapsforge:$osm_version"
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     kapt 'com.google.dagger:dagger-compiler:2.16'
     testImplementation 'junit:junit:4.12'

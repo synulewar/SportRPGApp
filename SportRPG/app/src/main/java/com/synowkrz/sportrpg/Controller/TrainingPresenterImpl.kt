@@ -22,18 +22,27 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
                 currentTrainingState = TrainingStates.STOPPED
                 trainingView.setButtons(TrainingStates.STOPPED)
             }
+            TrainingStates.PAUSED -> {
+                currentTrainingState = TrainingStates.STOPPED
+                trainingView.setButtons(TrainingStates.STOPPED)
+            }
+            TrainingStates.STOPPED ->
+                trainingView.displayFinalResults()
         }
     }
 
     override fun startTimerAndDistanceTracker() {
-        trainingStartTimestamp = SystemClock.uptimeMillis()
+        Log.d(TAG,  "Initial training time " + trainingTime)
+        trainingStartTimestamp = SystemClock.uptimeMillis() - trainingTime
         Log.d(TAG,  "Subscribe timer rx")
         disposableTimer = timerRX
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
-                    var diff = SystemClock.uptimeMillis() - trainingStartTimestamp
-                    trainingView.setTime(ClockTime.clockFromMilis(diff))
+                    var currentTime = SystemClock.uptimeMillis()
+                    trainingTime = currentTime - trainingStartTimestamp
+                    Log.d(TAG, "timer event startTime " + trainingStartTimestamp + " current time " +  currentTime + " diff " + trainingTime)
+                    trainingView.setTime(ClockTime.clockFromMilis(trainingTime))
                 }
     }
 
@@ -44,17 +53,25 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
             TrainingStates.STOPPED -> {
                 currentTrainingState = TrainingStates.IN_PROGRESS
                 resetTraining()
-                trainingView.setButtons(TrainingStates.IN_PROGRESS)
                 trainingView.startTraining()
             }
+            TrainingStates.IN_PROGRESS -> {
+                currentTrainingState = TrainingStates.PAUSED
+                disposableTimer.dispose()
+            }
+            TrainingStates.PAUSED -> {
+                currentTrainingState = TrainingStates.IN_PROGRESS
+                startTimerAndDistanceTracker()
+            }
         }
+        trainingView.setButtons(currentTrainingState)
     }
 
 
     lateinit var trainingView: TrainingView
     lateinit var disposableTimer : Disposable
-    val initialTrainingTime = 0L;
-    val initialTrainingDistance = 6.1
+    var trainingTime = 0L;
+    var initialTrainingDistance = 6.1
     var currentTrainingState : TrainingStates = TrainingStates.STOPPED
     var trainingStartTimestamp : Long = 0L
     var timerRX : Observable<Long> = Observable.interval(1, TimeUnit.SECONDS)
@@ -79,7 +96,8 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
     }
 
     private fun resetTraining() {
-        trainingView.setTime(ClockTime.clockFromMilis(initialTrainingTime))
+        trainingTime = 0L
+        trainingView.setTime(ClockTime.clockFromMilis(trainingTime))
         trainingView.setDistance(initialTrainingDistance)
     }
 
