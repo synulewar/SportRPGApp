@@ -12,4 +12,6 @@ interface TrainingView {
     fun startTraining()
     fun displayFinalResults()
     fun getCurrentLocation()
+    fun startLocationTracking()
+    fun stopLocationTracking()
 }

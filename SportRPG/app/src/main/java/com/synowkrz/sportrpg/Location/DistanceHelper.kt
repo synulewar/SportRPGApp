@@ -6,5 +6,5 @@ interface DistanceHelper {
     fun setLastKnownLocation(location : Location)
     fun clearLocationList()
     fun addNewLocation(location: Location)
-    fun getOveralDistance()
+    fun getTotalDsitance() : Double
 }

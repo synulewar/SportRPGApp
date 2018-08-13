@@ -1,6 +1,7 @@
 package com.synowkrz.sportrpg.View
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
@@ -9,8 +10,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.TrainingPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
@@ -25,12 +25,16 @@ import javax.inject.Inject
 class TrainingActivity : AppCompatActivity(), TrainingView {
 
     val TAG = "KRZYS"
+    val UPDATE_INTERVAL = 5000L
 
     @Inject
     lateinit var trainingPresenter: TrainingPresenter
 
     @Inject
     lateinit var fusedLocationClient : FusedLocationProviderClient
+
+    private lateinit var locationCallback: LocationCallback
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,7 +102,7 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient.lastLocation.addOnSuccessListener {location: Location? ->
                 if (location != null) {
-                    var msg = "Location altitude " + location.altitude + " latitude " + location.latitude
+                    var msg = "Start Location longitude " + location.longitude + " latitude " + location.latitude
                     toast(msg)
                     Log.d(TAG, msg)
                 }
@@ -106,12 +110,34 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         }
     }
 
+
+    @SuppressLint("MissingPermission")
+    override fun startLocationTracking() {
+        Log.d(TAG, "Tracking distance started")
+        var locationRequest = LocationRequest()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = UPDATE_INTERVAL
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult != null) {
+                    var location = locationResult.lastLocation
+                    var msg = "Location changed longitude " + location.longitude + " latitude " + location.latitude
+                    toast(msg)
+                    Log.d(TAG, msg)
+                    trainingPresenter.onLocationChanged(location)
+                }
+            }
+        }
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
+    }
+
+
+    override fun stopLocationTracking() {
+        Log.d(TAG, "Stop location tracking")
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
     fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
     }
-
-    fun verifyPermission() : Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-    }
-
 }
