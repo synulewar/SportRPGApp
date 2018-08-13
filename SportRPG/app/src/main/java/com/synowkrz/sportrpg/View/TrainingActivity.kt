@@ -25,7 +25,7 @@ import javax.inject.Inject
 class TrainingActivity : AppCompatActivity(), TrainingView {
 
     val TAG = "KRZYS"
-    val UPDATE_INTERVAL = 5000L
+    val UPDATE_INTERVAL = 10000L
 
     @Inject
     lateinit var trainingPresenter: TrainingPresenter
