@@ -18,6 +18,7 @@ class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserControl
 
     var viewRegistered : Boolean = false
     lateinit var userView : UserView
+    lateinit var mainUser : User
 
 
     override fun deleteUser(userName: String) {
@@ -33,7 +34,8 @@ class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserControl
     override fun getUserDataFromDb(email: String) : User {
         val user = userDao.getUser(email)
         Log.d(TAG, "Getting user " + user)
-        return userDao.getUser(email)
+        mainUser = userDao.getUser(email)
+        return mainUser
     }
 
     override fun insertUserData(user: User) {

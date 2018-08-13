@@ -14,6 +14,7 @@ import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Constant.Level
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
+import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.Model.User
 import kotlinx.android.synthetic.main.user_main_layout.*
 import javax.inject.Inject
@@ -85,6 +86,13 @@ class UserActivity : Activity(), UserView {
             }
         } else if (requestCode == ContractValues.TRAINING_ACTIVITY) {
             Toast.makeText(applicationContext, "Training finished!", Toast.LENGTH_LONG).show()
+            if (data != null) {
+                var distance = data.getDoubleExtra(ContractValues.DISTANCE_KEY, 0.0)
+                var time = data.getLongExtra(ContractValues.TIME_KEY, 0L)
+                var score = data.getLongExtra(ContractValues.SCORE_KEY, 0L)
+                var type = TrainingType.values()[data.getIntExtra(ContractValues.TYPE_KEY,0)]
+                userController.updateUserData(type, time, distance, score)
+            }
         }
     }
 

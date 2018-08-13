@@ -17,6 +17,7 @@ data class Training(@PrimaryKey(autoGenerate = true) val id: Long, val email: St
         val BIKE_SPEED_LIMIT : Double = 40.0
         val RUN_SPEED_LIMIT : Double = 20.0
         val WALK_SPEED_LIMIT : Double = 6.00
+        val MS_TO_HOURS = 3600 * 1000
         val TAG = "KRZYS"
     }
 
@@ -39,8 +40,7 @@ data class Training(@PrimaryKey(autoGenerate = true) val id: Long, val email: St
 
     private fun calcSpeed() : Double {
         if (time != 0L) {
-            var hours = TimeUnit.MILLISECONDS.toHours(time)
-            var speed = distance/hours
+            var speed = distance/time * MS_TO_HOURS
             Log.d(TAG, "calcSpeed: time " + time + " distance " + distance + " speed " + speed + " km")
             return speed
         }

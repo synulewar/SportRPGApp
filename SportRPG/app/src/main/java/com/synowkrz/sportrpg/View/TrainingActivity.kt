@@ -3,6 +3,7 @@ package com.synowkrz.sportrpg.View
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -52,7 +53,12 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
 
     override fun displayFinalResults(training : Training) {
         longToast("Trainign results type " + training.type + " dist " + training.distance + " score " + training.score)
-        setResult(Activity.RESULT_OK)
+        var intent = Intent()
+        intent.putExtra(ContractValues.DISTANCE_KEY, training.distance)
+                .putExtra(ContractValues.TIME_KEY, training.time)
+                .putExtra(ContractValues.TYPE_KEY, training.type)
+                .putExtra(ContractValues.SCORE_KEY, training.score)
+        setResult(Activity.RESULT_OK, intent)
         finish()
     }
 
