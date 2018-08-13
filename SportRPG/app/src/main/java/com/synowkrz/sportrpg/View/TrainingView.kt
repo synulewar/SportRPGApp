@@ -11,4 +11,5 @@ interface TrainingView {
     fun setButtons(trainingStates: TrainingStates)
     fun startTraining()
     fun displayFinalResults()
+    fun getCurrentLocation()
 }

@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.synowkrz.sportrpg.Controller.*
 import com.synowkrz.sportrpg.Dao.CredentialsDao
 import com.synowkrz.sportrpg.Dao.TrainingDao
@@ -50,6 +52,10 @@ class AppModule(private val app: Application) {
 
     @Provides
     fun provideNewActivityController(credentialsDao: CredentialsDao, userDao: UserDao, sharedPreferences: SharedPreferences) : NewAccountController = NewAccountControllerImpl(credentialsDao, userDao, sharedPreferences)
+
+
+    @Provides
+    fun locationServer(context: Context) : FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
 
     @Provides
     fun provideTrainingPresenter(trainingDao: TrainingDao) : TrainingPresenter = TrainingPresenterImpl(trainingDao)

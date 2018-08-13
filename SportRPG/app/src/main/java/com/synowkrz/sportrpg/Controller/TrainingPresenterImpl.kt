@@ -11,6 +11,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.toast
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -87,6 +88,7 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
         resetTraining()
         trainingView.setButtons(TrainingStates.STOPPED)
         currentTrainingState = TrainingStates.STOPPED
+        trainingView.getCurrentLocation()
     }
 
     val TAG = "KRZYS"

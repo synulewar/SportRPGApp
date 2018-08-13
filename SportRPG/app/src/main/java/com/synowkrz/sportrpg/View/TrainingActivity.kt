@@ -1,7 +1,11 @@
 package com.synowkrz.sportrpg.View
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -15,9 +19,31 @@ import com.synowkrz.sportrpg.Model.TrainingStates
 import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.R
 import kotlinx.android.synthetic.main.activity_training.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class TrainingActivity : AppCompatActivity(), TrainingView {
+
+    val TAG = "KRZYS"
+
+    @Inject
+    lateinit var trainingPresenter: TrainingPresenter
+
+    @Inject
+    lateinit var fusedLocationClient : FusedLocationProviderClient
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "Training on create")
+        initDagger()
+        setContentView(R.layout.activity_training)
+        trainingPresenter.registerView(this)
+        var trainingType = TrainingType.values()[intent.getIntExtra(ContractValues.ACTIVITY_TYPE_KEY, 0)]
+        trainingPresenter.initTraining(trainingType)
+        startResumeButton.setOnClickListener {trainingPresenter.onStartPausePressed()}
+        finishStopButton.setOnClickListener {trainingPresenter.onStopFinishPressed()}
+    }
+
     override fun displayFinalResults() {
         setResult(Activity.RESULT_OK)
         finish()
@@ -29,26 +55,26 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
 
     override fun setButtons(trainingStates: TrainingStates) {
         Log.d(TAG, "setButtons " + trainingStates)
-       when(trainingStates){
-           TrainingStates.STOPPED -> {
-               startResumeButton.text = getString(R.string.startButtonText)
-               startResumeButton.setBackgroundColor(getColor(R.color.Green))
-               finishStopButton.text = getString(R.string.finishButtonText)
-               finishStopButton.setBackgroundColor(getColor(R.color.Red))
-           }
-           TrainingStates.IN_PROGRESS -> {
-               startResumeButton.text = getString(R.string.pausedButtonText)
-               startResumeButton.setBackgroundColor(getColor(R.color.Yellow))
-               finishStopButton.text = getString(R.string.stopButtonText)
-               finishStopButton.setBackgroundColor(getColor(R.color.Red))
-           }
-           TrainingStates.PAUSED -> {
-               startResumeButton.text = getString(R.string.resumeButtonText)
-               startResumeButton.setBackgroundColor(getColor(R.color.Green))
-               finishStopButton.text = getString(R.string.stopButtonText)
-               finishStopButton.setBackgroundColor(getColor(R.color.Red))
-           }
-       }
+        when(trainingStates){
+            TrainingStates.STOPPED -> {
+                startResumeButton.text = getString(R.string.startButtonText)
+                startResumeButton.setBackgroundColor(getColor(R.color.Green))
+                finishStopButton.text = getString(R.string.finishButtonText)
+                finishStopButton.setBackgroundColor(getColor(R.color.Red))
+            }
+            TrainingStates.IN_PROGRESS -> {
+                startResumeButton.text = getString(R.string.pausedButtonText)
+                startResumeButton.setBackgroundColor(getColor(R.color.Yellow))
+                finishStopButton.text = getString(R.string.stopButtonText)
+                finishStopButton.setBackgroundColor(getColor(R.color.Red))
+            }
+            TrainingStates.PAUSED -> {
+                startResumeButton.text = getString(R.string.resumeButtonText)
+                startResumeButton.setBackgroundColor(getColor(R.color.Green))
+                finishStopButton.text = getString(R.string.stopButtonText)
+                finishStopButton.setBackgroundColor(getColor(R.color.Red))
+            }
+        }
     }
 
     override fun setDistance(distance: Double) {
@@ -68,28 +94,24 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         }
     }
 
-    val TAG = "KRZYS"
-
-    @Inject
-    lateinit var trainingPresenter: TrainingPresenter
-
-    lateinit var fusedLocationClient : FusedLocationProviderClient
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "Training on create")
-        initDagger()
-        setContentView(R.layout.activity_training)
-        trainingPresenter.registerView(this)
-        var trainingType = TrainingType.values()[intent.getIntExtra(ContractValues.ACTIVITY_TYPE_KEY, 0)]
-        trainingPresenter.initTraining(trainingType)
-        startResumeButton.setOnClickListener {trainingPresenter.onStartPausePressed()}
-        finishStopButton.setOnClickListener {trainingPresenter.onStopFinishPressed()}
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+    override fun getCurrentLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.lastLocation.addOnSuccessListener {location: Location? ->
+                if (location != null) {
+                    var msg = "Location altitude " + location.altitude + " latitude " + location.latitude
+                    toast(msg)
+                    Log.d(TAG, msg)
+                }
+            }
+        }
     }
 
     fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
+    }
+
+    fun verifyPermission() : Boolean {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
 }
