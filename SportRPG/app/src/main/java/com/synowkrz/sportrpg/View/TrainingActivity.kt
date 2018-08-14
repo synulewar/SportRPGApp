@@ -52,7 +52,9 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
     }
 
     override fun displayFinalResults(training : Training) {
-        longToast("Trainign results type " + training.type + " dist " + training.distance + " score " + training.score)
+        var msg = "Trainign results type " + training.type + " dist " + training.distance + " score " + training.score
+        longToast(msg)
+        Log.d(TAG, msg)
         var intent = Intent()
         intent.putExtra(ContractValues.DISTANCE_KEY, training.distance)
                 .putExtra(ContractValues.TIME_KEY, training.time)

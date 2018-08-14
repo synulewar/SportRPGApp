@@ -3,6 +3,7 @@ package com.synowkrz.sportrpg.Controller
 import android.util.Log
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.Dao.UserDao
+import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.View.UserView
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -13,8 +14,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserController {
-
-
 
     var viewRegistered : Boolean = false
     lateinit var userView : UserView
@@ -48,6 +47,7 @@ class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserControl
             var user = userDao.getUser(email)
             if (user != null) {
                 Log.d(TAG, "KRZYS onSuccess called")
+                mainUser = user
                 emitter.onSuccess(user)
             } else {
                 emitter.onComplete()
@@ -67,5 +67,11 @@ class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserControl
 
     override fun unRegisterView() {
         viewRegistered = false
+    }
+
+    override fun updateUserData(trainingType: TrainingType, time: Long, distance: Double, score: Long) {
+        mainUser.addTrainingResulst(trainingType, time, distance, score)
+        userDao.insert(mainUser)
+        userView.bindUserWithView(mainUser)
     }
 }

@@ -59,14 +59,16 @@ class UserActivity : Activity(), UserView {
     fun bindUserWithView(user: User) {
         nameView.setText(user.name)
         scoreValueView.setText(user.score.toString())
-        walkValueView.setText(user.walkDis.toString())
-        runValueView.setText(user.runDis.toString())
-        bikeValueView.setText(user.bikeDis.toString())
+        walkValueView.text = "%.2f km".format(user.walkDis)
+        runValueView.text = "%.2f km".format(user.runDis)
+        bikeValueView.text = "%.2f km".format(user.bikeDis)
         avatarView.setImageResource(R.drawable.son);
         levelValueView.setText(user.level.toString())
-        progressValueView.setText(String.format("%d/%d", user.experience, Level.levelUpLimit(user.level)))
-        progressBarView.progress = user.experience
-        progressBarView.max = Level.levelUpLimit(user.level)
+        var levelProgress = Level.calculateLevelProgress(user.experience, user.level)
+        var levelUpLimit = Level.levelUpLimit(user.level)
+        progressValueView.setText(String.format("%d/%d", levelProgress, levelUpLimit))
+        progressBarView.progress = levelProgress.toInt()
+        progressBarView.max = levelUpLimit.toInt()
     }
 
 
@@ -89,9 +91,10 @@ class UserActivity : Activity(), UserView {
             if (data != null) {
                 var distance = data.getDoubleExtra(ContractValues.DISTANCE_KEY, 0.0)
                 var time = data.getLongExtra(ContractValues.TIME_KEY, 0L)
-                var score = data.getLongExtra(ContractValues.SCORE_KEY, 0L)
+                var score = data.getIntExtra(ContractValues.SCORE_KEY, 0)
                 var type = TrainingType.values()[data.getIntExtra(ContractValues.TYPE_KEY,0)]
-                userController.updateUserData(type, time, distance, score)
+                Log.d(TAG, "distance " + distance + " time " + time + " score " + score + " type " + type)
+                userController.updateUserData(type, time, distance, score.toLong())
             }
         }
     }
@@ -123,8 +126,8 @@ class UserActivity : Activity(), UserView {
                             Toast.makeText(applicationContext, "App wont work without permissions", Toast.LENGTH_LONG).show()
                             return
                         }
-                        startChooserActivity()
                     }
+                    startChooserActivity()
                 }
 
             }
