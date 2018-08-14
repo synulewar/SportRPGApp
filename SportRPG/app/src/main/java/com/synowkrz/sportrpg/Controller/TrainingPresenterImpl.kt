@@ -7,6 +7,7 @@ import com.synowkrz.sportrpg.Dao.TrainingDao
 import com.synowkrz.sportrpg.Location.DistanceHelper
 import com.synowkrz.sportrpg.Location.DistanceHelperImpl
 import com.synowkrz.sportrpg.Model.ClockTime
+import com.synowkrz.sportrpg.Model.Training
 import com.synowkrz.sportrpg.Model.TrainingStates
 import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.View.TrainingView
@@ -17,13 +18,14 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : TrainingPresenter {
+class TrainingPresenterImpl @Inject constructor(var trainingDao: TrainingDao) : TrainingPresenter {
 
     var distanceHelper : DistanceHelper = DistanceHelperImpl.getInstance()
     lateinit var trainingView: TrainingView
     lateinit var disposableTimer : Disposable
+    lateinit var stroredTrainingType: TrainingType
     var trainingTime = 0L;
-    var initialTrainingDistance = 6.1
+    var initialTrainingDistance = 0.0
     var currentTrainingState : TrainingStates = TrainingStates.STOPPED
     var trainingStartTimestamp : Long = 0L
     var timerRX : Observable<Long> = Observable.interval(1, TimeUnit.SECONDS)
@@ -45,9 +47,13 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
                 trainingView.setButtons(TrainingStates.STOPPED)
             }
             TrainingStates.STOPPED -> {
-                trainingView.displayFinalResults()
+                var training = Training(0,"synulewar@gmail.com", stroredTrainingType.ordinal)
+                training.distance = distanceHelper.getTotalDsitance()
+                training.time = trainingTime
+                training.calcResults()
+                trainingDao.insert(training)
+                trainingView.displayFinalResults(training)
             }
-
         }
     }
 
@@ -95,6 +101,7 @@ class TrainingPresenterImpl @Inject constructor(trainingDao: TrainingDao) : Trai
     }
 
     override fun initTraining(trainingType: TrainingType) {
+        stroredTrainingType = trainingType
         trainingView.chooseTrainignImage(trainingType)
         resetTraining()
         trainingView.setButtons(TrainingStates.STOPPED)

@@ -16,6 +16,7 @@ class DistanceHelperImpl : DistanceHelper {
 
     var locationList : MutableList<Location> = mutableListOf()
     var overalDistance : Double = 0.0
+    val M_TO_KM = 0.001
     var TAG = "KRZYS"
     lateinit var lastLocation: Location
 
@@ -35,10 +36,10 @@ class DistanceHelperImpl : DistanceHelper {
 
     private fun calculateTravelledDistance() {
         var size = locationList.size
-        if (size > 2) {
+        if (size > 1) {
             var latestLocation = locationList.get(size - 1)
-            var previousLocation = locationList.get(size -2)
-            var distance = latestLocation.distanceTo(previousLocation)
+            var previousLocation = locationList.get(size - 2)
+            var distance = latestLocation.distanceTo(previousLocation) * M_TO_KM
             if (distance >= 0) {
                 overalDistance += distance
             }

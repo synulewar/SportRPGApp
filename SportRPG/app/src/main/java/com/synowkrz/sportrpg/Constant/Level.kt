@@ -6,5 +6,7 @@ class Level {
         fun levelUpLimit(level : Int) : Int {
             return level * 1000
         }
+
+
     }
 }

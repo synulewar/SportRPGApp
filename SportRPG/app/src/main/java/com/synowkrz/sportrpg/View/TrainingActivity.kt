@@ -3,6 +3,7 @@ package com.synowkrz.sportrpg.View
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -15,17 +16,19 @@ import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.TrainingPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.ClockTime
+import com.synowkrz.sportrpg.Model.Training
 import com.synowkrz.sportrpg.Model.TrainingStates
 import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.R
 import kotlinx.android.synthetic.main.activity_training.*
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class TrainingActivity : AppCompatActivity(), TrainingView {
 
     val TAG = "KRZYS"
-    val UPDATE_INTERVAL = 10000L
+    val UPDATE_INTERVAL = 6000L
 
     @Inject
     lateinit var trainingPresenter: TrainingPresenter
@@ -48,8 +51,14 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         finishStopButton.setOnClickListener {trainingPresenter.onStopFinishPressed()}
     }
 
-    override fun displayFinalResults() {
-        setResult(Activity.RESULT_OK)
+    override fun displayFinalResults(training : Training) {
+        longToast("Trainign results type " + training.type + " dist " + training.distance + " score " + training.score)
+        var intent = Intent()
+        intent.putExtra(ContractValues.DISTANCE_KEY, training.distance)
+                .putExtra(ContractValues.TIME_KEY, training.time)
+                .putExtra(ContractValues.TYPE_KEY, training.type)
+                .putExtra(ContractValues.SCORE_KEY, training.score)
+        setResult(Activity.RESULT_OK, intent)
         finish()
     }
 
@@ -82,7 +91,7 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
     }
 
     override fun setDistance(distance: Double) {
-        distanceValue.text = "$distance km"
+        distanceValue.text = "%.2f km".format(distance)
     }
 
     override fun setTime(clockTime: ClockTime) {
