@@ -24,4 +24,10 @@
     <string name="resumeButtonText">Resume</string>
     <string name="finishButtonText">Finish</string>
     <string name="pausedButtonText">Paused</string>
+    <string name="strength">Strength:</string>
+    <string name="agilityLabel">Agility:</string>
+    <string name="spellPowerlabel">Spell Power:</string>
+    <string name="vitality">Vitality:</string>
+    <string name="ability_points">Ability points:</string>
+    <string name="skill_points">Skill points</string>
 </resources>

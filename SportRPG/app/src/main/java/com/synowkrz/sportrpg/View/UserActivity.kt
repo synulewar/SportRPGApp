@@ -42,6 +42,7 @@ class UserActivity : Activity(), UserView {
                 }
                 R.id.action_character -> {
                     Toast.makeText(applicationContext, "Character", Toast.LENGTH_LONG).show()
+                    userController.onCharacterItemClicked()
                 }
                 R.id.action_dungeon -> {
                     Toast.makeText(applicationContext, "Dungeon", Toast.LENGTH_LONG).show()
@@ -135,6 +136,12 @@ class UserActivity : Activity(), UserView {
                 Log.e(TAG, "Wrong permission code")
             }
         }
+    }
+
+    override fun startCharacterActivity(user: User) {
+        var intent = Intent(this, CharacterActivity::class.java)
+        intent.putExtra(ContractValues.EMAIL_KEY, user.email)
+        startActivity(intent)
     }
 
     private fun verifyPermissionsAndStartTraining() {

@@ -2,7 +2,6 @@ package com.synowkrz.sportrpg.View
 
 import com.synowkrz.sportrpg.Model.User
 
-interface UserView {
+interface CharacterView {
     fun bindUserWithView(user: User)
-    fun startCharacterActivity(user: User)
 }

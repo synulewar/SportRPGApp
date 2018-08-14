@@ -48,6 +48,10 @@ class AppModule(private val app: Application) {
     fun provideUserControl(userDao: UserDao) : UserController = UserControllerImpl(userDao)
 
     @Provides
+    @Singleton
+    fun provideCharacterPresenter(userDao: UserDao) : CharacterPresenter = CharacterPresenterImpl(userDao)
+
+    @Provides
     fun provideLoginControl(sharedPreferences: SharedPreferences, credentialsDao: CredentialsDao) : LoginController = LoginControllerImpl(sharedPreferences, credentialsDao)
 
     @Provides

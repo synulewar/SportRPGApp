@@ -14,6 +14,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserController {
+    override fun onCharacterItemClicked() {
+        userView.startCharacterActivity(mainUser)
+    }
 
     var viewRegistered : Boolean = false
     lateinit var userView : UserView

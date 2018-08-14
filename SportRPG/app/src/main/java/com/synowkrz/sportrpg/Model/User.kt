@@ -19,10 +19,12 @@ data class User(@PrimaryKey val email: String,
                 var spellPower: Int,
                 var vitality: Int,
                 var hp: Int,
-                var mana: Int) {
+                var mana: Int,
+                var abilityPoints: Int,
+                var skillPoints: Int) {
     @Ignore
     constructor(email: String, name: String) : this(email, name, 0.0, 0.0, 0.0,
-            0, 1, 0, 1,1,1,1,1,1)
+            0, 1, 0, 1,1,1,1,1,1, 0, 0)
 
     fun addTrainingResulst(trainingType: TrainingType, time: Long, distance: Double, trainingScore: Long) {
         when (trainingType) {
@@ -32,6 +34,11 @@ data class User(@PrimaryKey val email: String,
         }
         score += trainingScore
         experience += trainingScore
+        var previousLevel = level
         level = Level.checkLevel(experience)
+        if (level > previousLevel) {
+            abilityPoints += 5 * (level - previousLevel)
+            skillPoints += 1 * (level - previousLevel)
+        }
     }
 }
