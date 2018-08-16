@@ -14,35 +14,6 @@ import kotlinx.android.synthetic.main.activity_character.*
 import javax.inject.Inject
 
 class CharacterActivity : Activity(), CharacterView {
-    override fun setIncreaseButtonsVisibility(visible: Int) {
-        buttonAddStrength.visibility = visible
-        buttonAddAgility.visibility = visible
-        buttonAddSpellPower.visibility = visible
-        buttonAddVitality.visibility = visible
-    }
-
-    override fun setDecreaseButtonsVisibility(visible: Int, type: AbilityType) {
-        when (type) {
-
-            AbilityType.STRENGTH -> buttonAddStrength.visibility = visible
-            AbilityType.AGILITY -> buttonAddAgility.visibility = visible
-            AbilityType.SPELL_POWER -> buttonAddSpellPower.visibility = visible
-            AbilityType.VITALITY -> buttonAddVitality.visibility =visible
-        }
-    }
-
-    override fun setConfirmButtonVisibility(visible: Int) {
-        buttonConfirm.visibility = visible
-    }
-
-    override fun setAllButtonsVisibility(visible: Int) {
-        setIncreaseButtonsVisibility(visible)
-        for (i in 0..AbilityType.values().size - 1) {
-            setDecreaseButtonsVisibility(visible, AbilityType.values()[i])
-        }
-        setConfirmButtonVisibility(visible)
-    }
-
 
     val TAG = "KRZYS"
 
@@ -60,8 +31,7 @@ class CharacterActivity : Activity(), CharacterView {
         bindCharacterButtons()
     }
 
-    override
-    fun bindUserWithView(user: User) {
+    override fun bindUserWithView(user: User) {
         nameView.setText(user.name)
         avatarView.setImageResource(R.drawable.son);
         strengthValueView.text = user.strength.toString()
@@ -73,7 +43,42 @@ class CharacterActivity : Activity(), CharacterView {
         skillValueView.text = user.skillPoints.toString()
     }
 
-    fun initDagger() {
+    override fun setAllDecreaseButtonsVisibility(visible: Int) {
+        for (i in 0..AbilityType.values().size - 1) {
+            setDecreaseButtonsVisibility(visible, AbilityType.values()[i])
+        }
+    }
+
+    override fun setIncreaseButtonsVisibility(visible: Int) {
+        Log.d(TAG, "setIncreaseButtonsVisibility " + visible)
+        buttonAddStrength.visibility = visible
+        buttonAddAgility.visibility = visible
+        buttonAddSpellPower.visibility = visible
+        buttonAddVitality.visibility = visible
+    }
+
+    override fun setDecreaseButtonsVisibility(visible: Int, type: AbilityType) {
+        Log.d(TAG, "setDecreaseButtonsVisibility " + type + " " + visible)
+        when (type) {
+            AbilityType.STRENGTH -> buttonSubstractStrength.visibility = visible
+            AbilityType.AGILITY -> buttonSubstractAgility.visibility = visible
+            AbilityType.SPELL_POWER -> buttonSubstractSpellPower.visibility = visible
+            AbilityType.VITALITY -> buttonSubstractVitality.visibility =visible
+        }
+    }
+
+    override fun setConfirmButtonVisibility(visible: Int) {
+        buttonConfirm.visibility = visible
+    }
+
+    override fun setAllButtonsVisibility(visible: Int) {
+        Log.d(TAG, "setAllButtonsVisibility " + visible)
+        setIncreaseButtonsVisibility(visible)
+        setAllDecreaseButtonsVisibility(visible)
+        setConfirmButtonVisibility(visible)
+    }
+
+    private fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
     }
 
@@ -88,5 +93,7 @@ class CharacterActivity : Activity(), CharacterView {
         buttonSubstractAgility.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.AGILITY, false) }
         buttonSubstractSpellPower.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.SPELL_POWER, false) }
         buttonSubstractVitality.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.VITALITY, false) }
+
+        buttonConfirm.setOnClickListener { characterPresenter.onConfirmButtonPressed() }
     }
 }

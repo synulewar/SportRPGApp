@@ -9,4 +9,5 @@ interface CharacterView {
     fun setDecreaseButtonsVisibility(visible: Int, type: AbilityType)
     fun setConfirmButtonVisibility(visible: Int)
     fun setAllButtonsVisibility(visible: Int)
+    fun setAllDecreaseButtonsVisibility(visible: Int)
 }
