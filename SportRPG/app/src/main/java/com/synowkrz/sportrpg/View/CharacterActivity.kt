@@ -7,6 +7,7 @@ import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Controller.CharacterPresenter
 import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
+import com.synowkrz.sportrpg.Model.AbilityType
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.R
 import kotlinx.android.synthetic.main.activity_character.*
@@ -27,7 +28,7 @@ class CharacterActivity : Activity(), CharacterView {
         initDagger()
         characterPresenter.registerView(this)
         characterPresenter.loadUserData(email)
-
+        bindCharacterButtons()
     }
 
     override
@@ -45,5 +46,18 @@ class CharacterActivity : Activity(), CharacterView {
 
     fun initDagger() {
         (application as SportRPGApp).getAppComponent().inject(this)
+    }
+
+    private fun bindCharacterButtons() {
+        
+        buttonAddStrength.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.STRENGTH, true) }
+        buttonAddAgility.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.AGILITY, true) }
+        buttonAddSpellPower.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.SPELL_POWER, true) }
+        buttonAddVitality.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.VITALITY, true) }
+
+        buttonSubstractStrength.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.STRENGTH, false) }
+        buttonSubstractAgility.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.AGILITY, false) }
+        buttonSubstractSpellPower.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.SPELL_POWER, false) }
+        buttonSubstractVitality.setOnClickListener { characterPresenter.onAbilityChange(AbilityType.VITALITY, false) }
     }
 }

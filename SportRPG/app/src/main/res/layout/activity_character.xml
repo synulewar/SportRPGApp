@@ -68,6 +68,22 @@
                 android:layout_height="wrap_content"
                 style="@style/ValueStyle"
                 android:text="12"/>
+
+            <ImageButton
+                android:id="@+id/buttonAddStrength"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/plus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
+
+            <ImageButton
+                android:id="@+id/buttonSubstractStrength"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/minus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
         </LinearLayout>
 
 
@@ -90,6 +106,22 @@
                 android:layout_height="wrap_content"
                 style="@style/ValueStyle"
                 android:text="21"/>
+
+            <ImageButton
+                android:id="@+id/buttonAddAgility"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/plus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
+
+            <ImageButton
+                android:id="@+id/buttonSubstractAgility"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/minus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
         </LinearLayout>
 
 
@@ -112,6 +144,22 @@
                 android:layout_height="wrap_content"
                 style="@style/ValueStyle"
                 android:text="11"/>
+
+            <ImageButton
+                android:id="@+id/buttonAddSpellPower"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/plus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
+
+            <ImageButton
+                android:id="@+id/buttonSubstractSpellPower"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/minus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
         </LinearLayout>
 
 
@@ -134,6 +182,22 @@
                 android:layout_height="wrap_content"
                 style="@style/ValueStyle"
                 android:text="5"/>
+
+            <ImageButton
+                android:id="@+id/buttonAddVitality"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/plus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
+
+            <ImageButton
+                android:id="@+id/buttonSubstractVitality"
+                android:layout_width="@dimen/character_plus_icon"
+                android:layout_height="@dimen/character_plus_icon"
+                android:background="@drawable/minus"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/wide_margin"/>
         </LinearLayout>
 
         <LinearLayout
@@ -155,6 +219,8 @@
                 android:layout_height="wrap_content"
                 style="@style/ValueStyle"
                 android:text="5"/>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -177,6 +243,12 @@
                 style="@style/ValueStyle"
                 android:text="5"/>
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
