@@ -9,4 +9,5 @@ interface CharacterPresenter  {
     fun loadUserData(email: String)
     fun registerView(view: CharacterView)
     fun onAbilityChange(type: AbilityType, increase: Boolean)
+
 }

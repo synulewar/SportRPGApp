@@ -11,6 +11,14 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : CharacterPresenter {
+
+    companion object {
+        val VISIBLE = 1
+        val INVISBILE = 0
+    }
+
+
+
     override fun onAbilityChange(type: AbilityType, increase: Boolean) {
         when(type) {
             AbilityType.STRENGTH -> if (increase) mainUser.strength += 1 else mainUser.strength -= 1
@@ -20,10 +28,12 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         }
         if (increase) mainUser.abilityPoints -= 1 else mainUser.abilityPoints += 1
         characterView.bindUserWithView(mainUser)
+
     }
 
     val TAG = "KRZYS"
     lateinit var mainUser : User
+    lateinit var lastConfirmedUser : User
     lateinit var characterView: CharacterView
 
     override fun loadUserData(email: String) {
@@ -41,7 +51,12 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         maybeUser
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{ user -> characterView.bindUserWithView(user) }
+                .subscribe{ user ->
+                    characterView.bindUserWithView(user)
+                    if (mainUser.abilityPoints == 0) {
+                        characterView.setAllButtonsVisibility(INVISBILE)
+                    }
+                 }
     }
 
     override fun registerView(view: CharacterView) {

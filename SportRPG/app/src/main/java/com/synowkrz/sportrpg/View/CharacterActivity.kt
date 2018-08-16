@@ -14,6 +14,35 @@ import kotlinx.android.synthetic.main.activity_character.*
 import javax.inject.Inject
 
 class CharacterActivity : Activity(), CharacterView {
+    override fun setIncreaseButtonsVisibility(visible: Int) {
+        buttonAddStrength.visibility = visible
+        buttonAddAgility.visibility = visible
+        buttonAddSpellPower.visibility = visible
+        buttonAddVitality.visibility = visible
+    }
+
+    override fun setDecreaseButtonsVisibility(visible: Int, type: AbilityType) {
+        when (type) {
+
+            AbilityType.STRENGTH -> buttonAddStrength.visibility = visible
+            AbilityType.AGILITY -> buttonAddAgility.visibility = visible
+            AbilityType.SPELL_POWER -> buttonAddSpellPower.visibility = visible
+            AbilityType.VITALITY -> buttonAddVitality.visibility =visible
+        }
+    }
+
+    override fun setConfirmButtonVisibility(visible: Int) {
+        buttonConfirm.visibility = visible
+    }
+
+    override fun setAllButtonsVisibility(visible: Int) {
+        setIncreaseButtonsVisibility(visible)
+        for (i in 0..AbilityType.values().size - 1) {
+            setDecreaseButtonsVisibility(visible, AbilityType.values()[i])
+        }
+        setConfirmButtonVisibility(visible)
+    }
+
 
     val TAG = "KRZYS"
 
