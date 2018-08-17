@@ -4,11 +4,13 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.browse.MediaBrowser
 import android.preference.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.synowkrz.sportrpg.Controller.*
 import com.synowkrz.sportrpg.Dao.CredentialsDao
+import com.synowkrz.sportrpg.Dao.ItemDao
 import com.synowkrz.sportrpg.Dao.TrainingDao
 import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Database.SportRPGDatabase
@@ -42,6 +44,10 @@ class AppModule(private val app: Application) {
     @Provides
     @Singleton
     fun provideTrainingTable(sportRPGDatabase: SportRPGDatabase) : TrainingDao = sportRPGDatabase.trainingDao()
+
+    @Provides
+    @Singleton
+    fun provideItemTable(sportRPGDatabase: SportRPGDatabase) : ItemDao = sportRPGDatabase.itemDao()
 
     @Provides
     @Singleton
