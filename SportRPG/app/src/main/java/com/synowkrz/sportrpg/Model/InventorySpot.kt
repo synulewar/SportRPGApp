@@ -1,4 +1,4 @@
-package com.synowkrz.sportrpg.inventory
+package com.synowkrz.sportrpg.Model
 
 enum class InventorySpot {
     HEAD,

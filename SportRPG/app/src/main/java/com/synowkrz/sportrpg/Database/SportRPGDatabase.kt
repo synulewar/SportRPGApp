@@ -9,7 +9,7 @@ import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Model.Credentials
 import com.synowkrz.sportrpg.Model.Training
 import com.synowkrz.sportrpg.Model.User
-import com.synowkrz.sportrpg.inventory.Item
+import com.synowkrz.sportrpg.Model.Item
 
 @Database(entities = arrayOf(User::class, Credentials::class, Training::class, Item::class), version = 1)
 abstract class SportRPGDatabase : RoomDatabase() {

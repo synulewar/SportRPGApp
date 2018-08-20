@@ -4,8 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.synowkrz.sportrpg.Model.Credentials
-import com.synowkrz.sportrpg.inventory.Item
+import com.synowkrz.sportrpg.Model.Item
 
 @Dao
 interface ItemDao {

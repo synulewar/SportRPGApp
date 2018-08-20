@@ -1,5 +1,6 @@
 package com.synowkrz.sportrpg.inventory
 
+import com.synowkrz.sportrpg.Model.Item
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -7,7 +8,7 @@ class ItemTest {
 
     @Test
     fun testConvertItemConversion() {
-        var item = Item("Sword of Arangor", "Very strong sword", 1000, 1,1,2,2,1)
+        var item = Item("Sword of Arangor", "Very strong sword", 1000, 1, 1, 2, 2, 1)
         var itemList = listOf(item)
         var str = Item.convertItemListIntoJson(itemList)
         println(str)

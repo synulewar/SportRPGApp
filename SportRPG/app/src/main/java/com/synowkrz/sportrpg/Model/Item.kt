@@ -1,4 +1,4 @@
-package com.synowkrz.sportrpg.inventory
+package com.synowkrz.sportrpg.Model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
