@@ -15,6 +15,5 @@ class ContractValues {
         val TIME_KEY = "time"
         val SCORE_KEY = "score"
         val TYPE_KEY = "type"
-        val speed_key = "spped"
     }
 }

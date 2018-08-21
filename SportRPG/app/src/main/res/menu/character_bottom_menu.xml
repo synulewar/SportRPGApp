@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_abilities"
+        android:icon="@drawable/character"
+        android:title="@string/abilities"/>
+    <item
+        android:id="@+id/action_equipment"
+        android:icon="@drawable/swords"
+        android:title="@string/equipment"/>
+
+    <item
+        android:id="@+id/action_skills"
+        android:icon="@drawable/tree"
+        android:title="@string/skills"/>
+</menu>

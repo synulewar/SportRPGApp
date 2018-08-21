@@ -31,4 +31,7 @@
     <string name="ability_points">Ability points:</string>
     <string name="skill_points">Skill points</string>
     <string name="confirm">CONFIRM</string>
+    <string name="abilities">Abilities</string>
+    <string name="equipment">Equipment</string>
+    <string name="skills">Skills</string>
 </resources>

@@ -9,10 +9,7 @@ import android.preference.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.synowkrz.sportrpg.Controller.*
-import com.synowkrz.sportrpg.Dao.CredentialsDao
-import com.synowkrz.sportrpg.Dao.ItemDao
-import com.synowkrz.sportrpg.Dao.TrainingDao
-import com.synowkrz.sportrpg.Dao.UserDao
+import com.synowkrz.sportrpg.Dao.*
 import com.synowkrz.sportrpg.Database.SportRPGDatabase
 import dagger.Module
 import dagger.Provides
@@ -48,6 +45,14 @@ class AppModule(private val app: Application) {
     @Provides
     @Singleton
     fun provideItemTable(sportRPGDatabase: SportRPGDatabase) : ItemDao = sportRPGDatabase.itemDao()
+
+    @Provides
+    @Singleton
+    fun provideBasicSkillTable(sportRPGDatabase: SportRPGDatabase) : BasicSkillDao = sportRPGDatabase.basicSkillDao()
+
+    @Provides
+    @Singleton
+    fun provdiesSkillTable(sportRPGDatabase: SportRPGDatabase) : SkillDao = sportRPGDatabase.skillDao()
 
     @Provides
     @Singleton
