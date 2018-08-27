@@ -1,7 +1,7 @@
 package com.synowkrz.sportrpg.DaggerComponents
 
-import android.app.Activity
 import com.synowkrz.sportrpg.View.*
+import com.synowkrz.sportrpg.View.Character.CharacterActivity
 import dagger.Component
 import javax.inject.Singleton
 

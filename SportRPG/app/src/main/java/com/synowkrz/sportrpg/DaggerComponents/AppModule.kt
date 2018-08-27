@@ -48,10 +48,6 @@ class AppModule(private val app: Application) {
 
     @Provides
     @Singleton
-    fun provideBasicSkillTable(sportRPGDatabase: SportRPGDatabase) : BasicSkillDao = sportRPGDatabase.basicSkillDao()
-
-    @Provides
-    @Singleton
     fun provdiesSkillTable(sportRPGDatabase: SportRPGDatabase) : SkillDao = sportRPGDatabase.skillDao()
 
     @Provides

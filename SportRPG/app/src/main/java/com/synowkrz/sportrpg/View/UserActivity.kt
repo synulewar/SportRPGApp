@@ -16,6 +16,7 @@ import com.synowkrz.sportrpg.Controller.UserController
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.TrainingType
 import com.synowkrz.sportrpg.Model.User
+import com.synowkrz.sportrpg.View.Character.CharacterActivity
 import kotlinx.android.synthetic.main.user_main_layout.*
 import javax.inject.Inject
 

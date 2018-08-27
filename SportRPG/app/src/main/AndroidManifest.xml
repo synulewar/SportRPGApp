@@ -32,7 +32,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".View.ChooseTrainingActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".View.CharacterActivity"
+        <activity android:name=".View.Character.CharacterActivity"
             android:screenOrientation="portrait"/>
     </application>
 

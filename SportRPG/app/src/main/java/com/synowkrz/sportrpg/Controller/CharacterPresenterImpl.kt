@@ -3,9 +3,9 @@ package com.synowkrz.sportrpg.Controller
 import android.util.Log
 import android.view.View
 import com.synowkrz.sportrpg.Dao.UserDao
-import com.synowkrz.sportrpg.Model.AbilityType
+import com.synowkrz.sportrpg.Model.BasicAttributes
 import com.synowkrz.sportrpg.Model.User
-import com.synowkrz.sportrpg.View.CharacterView
+import com.synowkrz.sportrpg.View.Character.CharacterView
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -60,16 +60,16 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         characterView.setConfirmButtonVisibility(INVISBILE)
     }
 
-    override fun onAbilityChange(type: AbilityType, increase: Boolean) {
+    override fun onAbilityChange(type: BasicAttributes, increase: Boolean) {
         if (lastConfirmedUser.email.equals(MOCK_USER_EMAIL)) {
             lastConfirmedUser = mainUser.copy()
         }
 
         when(type) {
-            AbilityType.STRENGTH -> if (increase) mainUser.strength += 1 else mainUser.strength -= 1
-            AbilityType.AGILITY -> if (increase) mainUser.agility += 1 else mainUser.agility -= 1
-            AbilityType.SPELL_POWER -> if (increase) mainUser.spellPower += 1 else mainUser.spellPower -= 1
-            AbilityType.VITALITY -> if (increase) mainUser.vitality += 1 else mainUser.vitality -= 1
+            BasicAttributes.STRENGTH -> if (increase) mainUser.strength += 1 else mainUser.strength -= 1
+            BasicAttributes.AGILITY -> if (increase) mainUser.agility += 1 else mainUser.agility -= 1
+            BasicAttributes.SPELL_POWER -> if (increase) mainUser.spellPower += 1 else mainUser.spellPower -= 1
+            BasicAttributes.VITALITY -> if (increase) mainUser.vitality += 1 else mainUser.vitality -= 1
         }
         if (increase) mainUser.abilityPoints -= 1 else mainUser.abilityPoints += 1
         characterView.bindUserWithView(mainUser)
@@ -82,16 +82,16 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         characterView.setIncreaseButtonsVisibility(visible)
 
         if (mainUser.strength == lastConfirmedUser.strength) visible = INVISBILE else visible = VISIBLE
-        characterView.setDecreaseButtonsVisibility(visible, AbilityType.STRENGTH)
+        characterView.setDecreaseButtonsVisibility(visible, BasicAttributes.STRENGTH)
 
         if (mainUser.agility == lastConfirmedUser.agility) visible = INVISBILE else visible = VISIBLE
-        characterView.setDecreaseButtonsVisibility(visible, AbilityType.AGILITY)
+        characterView.setDecreaseButtonsVisibility(visible, BasicAttributes.AGILITY)
 
         if (mainUser.spellPower == lastConfirmedUser.spellPower) visible = INVISBILE else visible = VISIBLE
-        characterView.setDecreaseButtonsVisibility(visible, AbilityType.SPELL_POWER)
+        characterView.setDecreaseButtonsVisibility(visible, BasicAttributes.SPELL_POWER)
 
         if (mainUser.vitality == lastConfirmedUser.vitality) visible = INVISBILE else visible = VISIBLE
-        characterView.setDecreaseButtonsVisibility(visible, AbilityType.VITALITY)
+        characterView.setDecreaseButtonsVisibility(visible, BasicAttributes.VITALITY)
 
         if (mainUser.equals(lastConfirmedUser))  visible = INVISBILE else visible = VISIBLE
         characterView.setConfirmButtonVisibility(visible)

@@ -1,5 +1,5 @@
 package com.synowkrz.sportrpg.Model
 
-enum class AbilityType {
+enum class BasicAttributes {
     STRENGTH, AGILITY, SPELL_POWER, VITALITY
 }

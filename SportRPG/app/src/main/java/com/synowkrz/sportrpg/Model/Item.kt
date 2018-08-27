@@ -9,10 +9,8 @@ import com.google.gson.reflect.TypeToken
 data class Item(@PrimaryKey val name:String,
                 val description: String,
                 val cost: Int,
-                val primaryParameter: Int,
-                val primaryParameterValue: Int,
-                val secondaryParameter: Int,
-                val secondaryParameterValue: Int,
+                val basicAttributesList: String,
+                val secondaryAttributesList: String,
                 val itemType: Int) {
 
     companion object {
