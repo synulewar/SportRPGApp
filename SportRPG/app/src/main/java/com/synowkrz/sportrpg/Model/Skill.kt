@@ -9,13 +9,14 @@ import com.google.gson.reflect.TypeToken
 data class Skill(@PrimaryKey val name: String,
                  val description: String,
                  var basicSkillList: String,
-                 var active: Int,
                  var levelFactor: Double,
                  var level: Int,
-                 var occurrence: Int,
+                 var attributeFactor: Double,
+                 var affectingAtribute: BasicAttributes,
+                 var occurrence: SkillOccurrence,
                  var duration: Int,
-                 var usage: Int,
-                 var skillType: Int,
+                 var refresh: Int,
+                 var skillType: SkillType,
                  var levelLimit: Int
 ) {
 

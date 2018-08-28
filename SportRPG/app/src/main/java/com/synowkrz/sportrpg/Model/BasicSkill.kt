@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-data class BasicSkill(var effect: Int,
+data class BasicSkill(var effect: SecondaryAtributes,
                       var value: Int
 ) {
     companion object {
