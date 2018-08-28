@@ -32,7 +32,7 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
         }
         Log.d(TAG, String.format("Store crednetials %s in DB", credentials))
         credentialsDao.insertCredentials(credentials)
-        userDao.insert(User(credentials.email, credentials.name))
+        userDao.insert(User(credentials.email, credentials.name, credentials.type))
         sharedPreferences.edit()
                 .putString(ContractValues.STORED_EMAIL,  credentials.email)
                 .putString(ContractValues.STORED_PASSWORD, credentials.password)

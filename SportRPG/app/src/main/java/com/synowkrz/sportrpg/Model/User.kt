@@ -23,10 +23,11 @@ data class User(@PrimaryKey val email: String,
                 var abilityPoints: Int,
                 var skillPoints: Int,
                 var inventory: String,
-                var skills: String) {
+                var skills: String,
+                var type: Int) {
     @Ignore
-    constructor(email: String, name: String) : this(email, name, 0.0, 0.0, 0.0,
-            0, 1, 0, 1,1,1,1,1,1, 5, 1, "", "")
+    constructor(email: String, name: String, type: Int) : this(email, name, 0.0, 0.0, 0.0,
+            0, 1, 0, 1,1,1,1,1,1, 5, 1, "", "", type)
 
     fun addTrainingResulst(trainingType: TrainingType, time: Long, distance: Double, trainingScore: Long) {
         when (trainingType) {

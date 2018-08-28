@@ -59,7 +59,7 @@ class TrainingActivity : AppCompatActivity(), TrainingView {
         intent.putExtra(ContractValues.DISTANCE_KEY, training.distance)
                 .putExtra(ContractValues.TIME_KEY, training.time)
                 .putExtra(ContractValues.TYPE_KEY, training.type)
-                .putExtra(ContractValues.SCORE_KEY, training.score)
+                .putExtra(ContractValues.SCORE_KEY, training.score + 10000)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }

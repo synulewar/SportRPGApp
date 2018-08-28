@@ -36,6 +36,22 @@
             android:hint="@string/password"
             android:layout_marginBottom="50dp"/>
 
+        <Spinner
+            android:id="@+id/typeChooser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/character_type"
+            android:prompt="@string/choose_class"
+            android:spinnerMode="dialog"
+            android:layout_marginBottom="50dp">
+        </Spinner>
+
+        <TextView
+            android:id="@+id/typeHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"/>
+
 
         <Button
             android:id="@+id/createNew"
@@ -43,6 +59,8 @@
             android:layout_height="wrap_content"
             android:text="@string/create_new_account"
             android:layout_marginBottom="100dp"/>
+
+
 
     </LinearLayout>
 

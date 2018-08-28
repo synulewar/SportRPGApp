@@ -10,5 +10,4 @@ interface AbilityView {
     fun setConfirmButtonVisibility(visible: Int)
     fun setAllButtonsVisibility(visible: Int)
     fun setAllDecreaseButtonsVisibility(visible: Int)
-
 }

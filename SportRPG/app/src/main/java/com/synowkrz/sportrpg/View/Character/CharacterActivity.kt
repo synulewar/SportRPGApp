@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.widget.Toast
 import com.synowkrz.sportrpg.Controller.CharacterPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.BasicAttributes
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.R
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_character.*
 
 class CharacterActivity : FragmentActivity(), CharacterView{
 
@@ -27,6 +29,8 @@ class CharacterActivity : FragmentActivity(), CharacterView{
         fragment.arguments = intent.extras
         initDagger()
         characterPresenter.registerView(this)
+        prepareBottomMenu()
+        bottomMenu.selectedItemId =
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment).commit();
     }
@@ -69,6 +73,29 @@ class CharacterActivity : FragmentActivity(), CharacterView{
 
     private fun unBindFragments() {
         abilityFragment = null
+    }
+
+    private fun prepareBottomMenu() {
+        bottomMenu.selectedItemId = R.id.action_abilities
+
+        bottomMenu.setOnNavigationItemSelectedListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.action_home -> {
+                    Log.d(TAG, "ET go home")
+                    finish()
+                }
+                R.id.action_abilities -> {
+                    Toast.makeText(applicationContext, "Abilities", Toast.LENGTH_LONG).show()
+                }
+                R.id.action_equipment -> {
+                    Toast.makeText(applicationContext, "Equipment", Toast.LENGTH_LONG).show()
+                }
+                R.id.action_skills -> {
+                    Toast.makeText(applicationContext, "Skills", Toast.LENGTH_LONG).show()
+                }
+            }
+            true
+        }
     }
 
 }

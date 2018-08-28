@@ -34,4 +34,18 @@
     <string name="abilities">Abilities</string>
     <string name="equipment">Equipment</string>
     <string name="skills">Skills</string>
+    <string name="wariorr">Warrior</string>
+    <string name="mage">Mage</string>
+    <string name="rogue">Rogue</string>
+    <string name="choose_class">Choose your character class</string>
+    <string name="home">Home</string>
+    <string name="hint_warrior">Based on strength and double hand weapon</string>
+    <string name="hint_mage">Kill enemys with arcane powers</string>
+    <string name="hint_rogue">Child of the shadow. Poison killer</string>
+
+    <string-array name="character_type">
+        <item>@string/wariorr</item>
+        <item>@string/mage</item>
+        <item>@string/rogue</item>
+    </string-array>
 </resources>

@@ -18,12 +18,13 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         val INVISBILE = View.INVISIBLE
         val MOCK_USER_EMAIL = "mock@gmail.com"
         val MOCK_USER_NAME = "mockName"
+        val MOCK_TYPE = 0
     }
 
     val TAG = "KRZYS"
     lateinit var mainUser : User
     lateinit var characterView: CharacterView
-    var lastConfirmedUser : User = User(MOCK_USER_EMAIL, MOCK_USER_NAME)
+    var lastConfirmedUser : User = User(MOCK_USER_EMAIL, MOCK_USER_NAME, MOCK_TYPE)
 
     override fun loadUserData(email: String) {
         var maybeUser = Maybe.create<User> { emitter ->
@@ -55,7 +56,7 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
 
     override fun onConfirmButtonPressed() {
         userDao.insert(mainUser)
-        lastConfirmedUser = User(MOCK_USER_EMAIL, MOCK_USER_NAME)
+        lastConfirmedUser = User(MOCK_USER_EMAIL, MOCK_USER_NAME, MOCK_TYPE)
         characterView.setAllDecreaseButtonsVisibility(INVISBILE)
         characterView.setConfirmButtonVisibility(INVISBILE)
     }
