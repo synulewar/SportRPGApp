@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="character_plus_icon">20sp</dimen>
+    <dimen name="character_plus_skill">30sp</dimen>
     <dimen name="wide_margin">30dp</dimen>
-
-
-
+    <dimen name="mid_margin">15dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="skill_picture_size">50dp</dimen>
+    <dimen name="skill_level_size">10sp</dimen>
 </resources>

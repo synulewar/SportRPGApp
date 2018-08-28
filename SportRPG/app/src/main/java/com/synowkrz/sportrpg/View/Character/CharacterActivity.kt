@@ -14,12 +14,12 @@ import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_character.*
 
 class CharacterActivity : FragmentActivity(), CharacterView{
-
     val TAG = "KRZYS"
 
     @Inject
     lateinit var characterPresenter: CharacterPresenter
     var abilityFragment: AbilityView? = null
+    var skillFragment: SkillView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,6 @@ class CharacterActivity : FragmentActivity(), CharacterView{
         initDagger()
         characterPresenter.registerView(this)
         prepareBottomMenu()
-        bottomMenu.selectedItemId =
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment).commit();
     }
@@ -63,6 +62,10 @@ class CharacterActivity : FragmentActivity(), CharacterView{
         abilityFragment = fragment
     }
 
+    override fun initSkillFragment(fragment: SkillFragment) {
+        skillFragment = fragment
+    }
+
     override fun getPresenter(): CharacterPresenter {
         return characterPresenter
     }
@@ -73,6 +76,7 @@ class CharacterActivity : FragmentActivity(), CharacterView{
 
     private fun unBindFragments() {
         abilityFragment = null
+        skillFragment = null
     }
 
     private fun prepareBottomMenu() {
@@ -86,16 +90,30 @@ class CharacterActivity : FragmentActivity(), CharacterView{
                 }
                 R.id.action_abilities -> {
                     Toast.makeText(applicationContext, "Abilities", Toast.LENGTH_LONG).show()
+                    if (abilityFragment == null) {
+                        var fragment = AbilityFragment.getInstance()
+                        fragment.arguments = intent.extras
+                        replaceFragment(fragment)
+                    }
                 }
                 R.id.action_equipment -> {
                     Toast.makeText(applicationContext, "Equipment", Toast.LENGTH_LONG).show()
                 }
                 R.id.action_skills -> {
                     Toast.makeText(applicationContext, "Skills", Toast.LENGTH_LONG).show()
+                    if (skillFragment == null) {
+                        replaceFragment(SkillFragment.getInstance())
+                    }
                 }
             }
             true
         }
     }
+
+    private fun replaceFragment(fragment: Fragment) {
+        unBindFragments()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+    }
+
 
 }

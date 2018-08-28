@@ -14,7 +14,9 @@ data class Skill(@PrimaryKey val name: String,
                  var level: Int,
                  var occurrence: Int,
                  var duration: Int,
-                 var usage: Int
+                 var usage: Int,
+                 var skillType: Int,
+                 var levelLimit: Int
 ) {
 
     companion object {

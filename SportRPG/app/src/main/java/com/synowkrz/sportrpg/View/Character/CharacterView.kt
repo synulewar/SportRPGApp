@@ -13,4 +13,5 @@ interface CharacterView {
     fun setAllDecreaseButtonsVisibility(visible: Int)
     fun initAbilityFragment(fragment: AbilityFragment)
     fun getPresenter(): CharacterPresenter
+    fun initSkillFragment(fragment: SkillFragment)
 }
