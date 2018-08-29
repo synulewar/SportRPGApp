@@ -2,6 +2,7 @@ package com.synowkrz.sportrpg.View.Character
 
 import com.synowkrz.sportrpg.Controller.CharacterPresenter
 import com.synowkrz.sportrpg.Model.BasicAttributes
+import com.synowkrz.sportrpg.Model.Skill
 import com.synowkrz.sportrpg.Model.User
 
 interface CharacterView {
@@ -14,4 +15,5 @@ interface CharacterView {
     fun initAbilityFragment(fragment: AbilityFragment)
     fun getPresenter(): CharacterPresenter
     fun initSkillFragment(fragment: SkillFragment)
+    fun bindSkillFragmentData(skillList : List<Skill>)
 }

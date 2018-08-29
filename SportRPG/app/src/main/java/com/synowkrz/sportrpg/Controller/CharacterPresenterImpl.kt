@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Model.BasicAttributes
+import com.synowkrz.sportrpg.Model.Skill
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.View.Character.CharacterView
 import io.reactivex.Maybe
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : CharacterPresenter {
+
 
     companion object {
         val VISIBLE = View.VISIBLE
@@ -75,6 +77,10 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         if (increase) mainUser.abilityPoints -= 1 else mainUser.abilityPoints += 1
         characterView.bindUserWithView(mainUser)
         resolvedButtonsVisibility()
+    }
+
+    override fun onSkillFragmentCreated() {
+        characterView.bindSkillFragmentData(Skill.convertStringIntoSkillList(mainUser.skills))
     }
 
     private fun resolvedButtonsVisibility() {

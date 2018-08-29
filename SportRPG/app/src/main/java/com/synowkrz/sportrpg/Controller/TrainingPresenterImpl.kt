@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class TrainingPresenterImpl @Inject constructor(var trainingDao: TrainingDao) : TrainingPresenter {
-
     var distanceHelper : DistanceHelper = DistanceHelperImpl.getInstance()
     lateinit var trainingView: TrainingView
     lateinit var disposableTimer : Disposable

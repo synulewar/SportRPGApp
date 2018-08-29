@@ -8,4 +8,6 @@ interface CharacterPresenter  {
     fun registerView(view: CharacterView)
     fun onAbilityChange(type: BasicAttributes, increase: Boolean)
     fun onConfirmButtonPressed()
+    fun onSkillFragmentCreated()
+
 }

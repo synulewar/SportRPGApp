@@ -204,6 +204,260 @@
 
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="2"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_A2"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_A2"
+                        android:background="@drawable/sword"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_A2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_D2"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_D2"
+                        android:background="@drawable/shield"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_D2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="0"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="2"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_A3"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_A3"
+                        android:background="@drawable/sword"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_A3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_D3"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_D3"
+                        android:background="@drawable/shield"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_D3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="0"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="2"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_A4"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_A4"
+                        android:background="@drawable/sword"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_A4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonSkillLvlUp_D4"
+                    android:layout_width="@dimen/character_plus_skill"
+                    android:layout_height="@dimen/character_plus_skill"
+                    android:background="@drawable/plus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/mid_margin" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/skillPicture_D4"
+                        android:background="@drawable/shield"
+                        android:layout_width="@dimen/skill_picture_size"
+                        android:layout_height="@dimen/skill_picture_size"
+                        android:layout_marginBottom="@dimen/small_margin"/>
+
+                    <TextView
+                        android:id="@+id/skillText_D4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="0"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
     </LinearLayout>
     
     

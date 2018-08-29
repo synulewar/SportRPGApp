@@ -227,11 +227,15 @@ class MageSkills {
                 frozenShieldName to R.drawable.frozen_shield,
                 regenerationName to R.drawable.regeneration,
                 firewallName to R.drawable.fire_wall,
-                overloadName to R.drawable.magic_overpower
+                invisibleName to R.drawable.invisible
                 )
 
         fun getInitalMageSkills() : String {
             return Skill.convertItemListIntoJson(initalMageSkills)
+        }
+
+        fun getSkillDrawable(key: String) : Int {
+            return mageSkillNamesDrawable.getOrDefault(key, R.drawable.sword)
         }
     }
 

@@ -12,4 +12,5 @@ interface TrainingPresenter {
     fun onStopFinishPressed()
     fun startTimerAndDistanceTracker()
     fun onLocationChanged(location : Location)
+
 }

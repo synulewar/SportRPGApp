@@ -1,5 +1,7 @@
 package com.synowkrz.sportrpg.View.Character
 
-interface SkillView {
+import com.synowkrz.sportrpg.Model.Skill
 
+interface SkillView {
+    fun bindSkillFragmentData(skillList : List<Skill>)
 }

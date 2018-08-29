@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.synowkrz.sportrpg.Controller.CharacterPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.BasicAttributes
+import com.synowkrz.sportrpg.Model.Skill
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.R
 import javax.inject.Inject
@@ -56,6 +57,10 @@ class CharacterActivity : FragmentActivity(), CharacterView{
 
     override fun setAllButtonsVisibility(visible: Int) {
         abilityFragment?.setAllButtonsVisibility(visible)
+    }
+
+    override fun bindSkillFragmentData(skillList: List<Skill>) {
+        skillFragment?.bindSkillFragmentData(skillList)
     }
 
     override fun initAbilityFragment(fragment: AbilityFragment) {
