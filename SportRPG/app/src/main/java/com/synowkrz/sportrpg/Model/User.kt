@@ -29,6 +29,10 @@ data class User(@PrimaryKey val email: String,
     constructor(email: String, name: String, type: Int) : this(email, name, 0.0, 0.0, 0.0,
             0, 1, 0, 1,1,1,1,1,1, 5, 1, "", "", type)
 
+    @Ignore
+    constructor(email: String, name: String, type: Int, skillList:String) : this(email, name, 0.0, 0.0, 0.0,
+            0, 1, 0, 1,1,1,1,1,1, 5, 1, "", skillList, type)
+
     fun addTrainingResulst(trainingType: TrainingType, time: Long, distance: Double, trainingScore: Long) {
         when (trainingType) {
             TrainingType.WALK -> {walkDis += distance}

@@ -33,7 +33,7 @@ class NewAccountActivity : Activity(), NewAccountView, AdapterView.OnItemSelecte
             var password = passwordText.text.toString()
             var type : Int = Integer.parseInt(typeChooser.selectedItemId.toString())
             Log.d(TAG, "User input " + email + " " + username + " " + password + " " + type)
-            newAccountController.addNewCredentials(Credentials(email, username, password, 0))
+            newAccountController.addNewCredentials(Credentials(email, username, password, type))
         }
 
     }

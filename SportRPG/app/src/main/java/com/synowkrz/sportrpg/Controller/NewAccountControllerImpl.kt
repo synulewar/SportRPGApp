@@ -6,8 +6,7 @@ import android.util.Log
 import com.synowkrz.sportrpg.Constant.ContractValues
 import com.synowkrz.sportrpg.Dao.CredentialsDao
 import com.synowkrz.sportrpg.Dao.UserDao
-import com.synowkrz.sportrpg.Model.Credentials
-import com.synowkrz.sportrpg.Model.User
+import com.synowkrz.sportrpg.Model.*
 import com.synowkrz.sportrpg.View.NewAccountView
 import javax.inject.Inject
 
@@ -32,7 +31,8 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
         }
         Log.d(TAG, String.format("Store crednetials %s in DB", credentials))
         credentialsDao.insertCredentials(credentials)
-        userDao.insert(User(credentials.email, credentials.name, credentials.type))
+        var skillList = getInitialSkillList(CharacterType.values()[credentials.type])
+        userDao.insert(User(credentials.email, credentials.name, credentials.type, skillList))
         sharedPreferences.edit()
                 .putString(ContractValues.STORED_EMAIL,  credentials.email)
                 .putString(ContractValues.STORED_PASSWORD, credentials.password)
@@ -53,6 +53,20 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
 
     fun createRemoteAccount() {
         TODO()
+    }
+
+    fun getInitialSkillList(characterType: CharacterType) : String {
+        when(characterType) {
+
+            CharacterType.WARRIOR -> Log.d(TAG, "Warrior skill list")
+            CharacterType.MAGE -> {
+                var skills = MageSkills.getInitalMageSkills()
+                Log.d(TAG, skills)
+                return skills
+            }
+            CharacterType.ROGUE -> TODO()
+        }
+        return ""
     }
 
 

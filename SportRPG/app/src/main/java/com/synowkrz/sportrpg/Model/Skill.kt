@@ -5,7 +5,6 @@ import android.arch.persistence.room.PrimaryKey
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-@Entity(tableName = "skillTable")
 data class Skill(@PrimaryKey val name: String,
                  val description: String,
                  var basicSkillList: String,
