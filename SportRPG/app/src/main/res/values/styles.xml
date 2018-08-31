@@ -56,10 +56,16 @@
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="dialogTextStyle" parent="TextAppearance.AppCompat">
+    <style name="dialogLabelStyle" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#000000</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="dialogValueStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:padding">5dp</item>
     </style>
 

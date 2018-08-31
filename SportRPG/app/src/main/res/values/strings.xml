@@ -43,10 +43,29 @@
     <string name="hint_mage">Kill enemys with arcane powers</string>
     <string name="hint_rogue">Child of the shadow. Poison killer</string>
     <string name="next_level">Next level</string>
-    <string name="as">dupa</string>
+
 
     <string name="current_lelvel_dialog_string">Current level: %d</string>
     <string name="close">Close</string>
+    <string name="dmg_alas">Damage</string>
+    <string name="magic_dmg_alias">Magic damage</string>
+    <string name="defense_alias">Defense</string>
+    <string name="magic_defense_alias">Magic Resist</string>
+    <string name="hit_chance_alias">Hit chance</string>
+    <string name="dodge_chance_alias">Dodge chance</string>
+    <string name="crit_chance_alias">Crit chance</string>
+    <string name="crit_dmg_alias">Crit damage</string>
+    <string name="stun_alias">Stun</string>
+    <string name="blind_alias">Blind</string>
+    <string name="morale_alias">Morale</string>
+    <string name="stack_alias">Stack</string>
+    <string name="burst_stack_alias">Burst stack</string>
+    <string name="true_dmg_alias">True damage</string>
+    <string name="health_alias">Health</string>
+    <string name="magic_thorns_alias">Magic thorns</string>
+    <string name="thorns_alias">Thorns</string>
+    <string name="invisible_alias">Invisible</string>
+
 
     <string-array name="character_type">
         <item>@string/wariorr</item>

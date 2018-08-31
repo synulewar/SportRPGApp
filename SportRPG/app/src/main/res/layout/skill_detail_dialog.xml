@@ -9,15 +9,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/dialogSkillName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/dialogTextStyle"
-            android:text="Skill name"
-            android:layout_gravity="center"/>
-
         <ImageView
             android:id="@+id/dialogSkillPicture"
             android:layout_width="@dimen/dialog_skill_picture_size"
@@ -29,14 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            style="@style/dialogTextStyle"/>
+            style="@style/dialogLabelStyle"/>
 
 
         <TextView
             android:id="@+id/dialogCurrentLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/dialogTextStyle"/>
+            style="@style/dialogLabelStyle"/>
 
         <ListView
             android:id="@+id/currentStats"
@@ -47,7 +38,7 @@
             android:id="@+id/onNextLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/dialogTextStyle"
+            style="@style/dialogLabelStyle"
             android:text="@string/next_level"/>
 
         <ListView

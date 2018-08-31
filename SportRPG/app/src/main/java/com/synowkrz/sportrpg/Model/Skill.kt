@@ -2,6 +2,7 @@ package com.synowkrz.sportrpg.Model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -42,5 +43,54 @@ data class Skill(@PrimaryKey val name: String,
                 SkillType.A4 to 20,
                 SkillType.D4 to 20
         )
+
+        fun resolveSkillLevelAndAttribute(skill: Skill, attributeValue: Int) : Skill {
+            var resolvedSkill : Skill = skill.copy()
+            var resolvedList = mutableListOf<BasicSkill>()
+            var basicSkillList = BasicSkill.convertStringIntoBasicSkillList(skill.basicSkillList)
+            for (basicSkill in basicSkillList) {
+                when(basicSkill.effect) {
+
+                    SecondaryAtributes.DMG,
+                    SecondaryAtributes.MAGIC_DMG,
+                    SecondaryAtributes.DEF,
+                    SecondaryAtributes.MAGIC_DEF,
+                    SecondaryAtributes.TRUE_DMG,
+                    SecondaryAtributes.HEALTH,
+                    SecondaryAtributes.MAGIC_THORNS,
+                    SecondaryAtributes.THORNS -> {
+                        var value = basicSkill.value *
+                                Math.pow(skill.level.toDouble(), skill.levelFactor) +
+                                        skill.attributeFactor * attributeValue
+                        resolvedList.add(BasicSkill(basicSkill.effect, value.toInt()))
+                    }
+
+                    SecondaryAtributes.HIT_CHANCE,
+                    SecondaryAtributes.DODGDE_CHANCE,
+                    SecondaryAtributes.CRIT_CHANCE,
+                    SecondaryAtributes.CRIT_DMG,
+                    SecondaryAtributes.STUN -> {
+
+
+                        var value = basicSkill.value *
+                                Math.pow(skill.level.toDouble(), skill.levelFactor) +
+                                (skill.attributeFactor - 1) * attributeValue
+                        resolvedList.add(BasicSkill(basicSkill.effect, value.toInt()))
+                    }
+
+
+                    SecondaryAtributes.BLIND,
+                    SecondaryAtributes.MORALE,
+                    SecondaryAtributes.STACK,
+                    SecondaryAtributes.BURST_STACK,
+                    SecondaryAtributes.INVISIBLE -> {
+                        Log.d(BasicSkill.TAG, "Do nothing")
+                    }
+                }
+            }
+
+            resolvedSkill.basicSkillList = BasicSkill.convertItemListIntoJson(resolvedList)
+            return resolvedSkill
+        }
     }
 }
