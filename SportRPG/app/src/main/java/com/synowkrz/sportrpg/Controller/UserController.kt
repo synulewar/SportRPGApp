@@ -16,4 +16,5 @@ interface UserController {
     fun unRegisterView()
     fun updateUserData(trainingType: TrainingType, time: Long, distance: Double, score: Long)
     fun onCharacterItemClicked()
+    fun reloadUserData()
 }

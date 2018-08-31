@@ -14,6 +14,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserControllerImpl @Inject constructor(var userDao: UserDao) : UserController {
+    override fun reloadUserData() {
+        var email = mainUser.email
+        loadUserData(email)
+    }
+
     override fun onCharacterItemClicked() {
         userView.startCharacterActivity(mainUser)
     }

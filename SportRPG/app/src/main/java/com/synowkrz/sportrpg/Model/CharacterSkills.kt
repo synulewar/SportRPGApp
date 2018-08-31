@@ -2,7 +2,7 @@ package com.synowkrz.sportrpg.Model
 
 import com.synowkrz.sportrpg.R
 
-class MageSkills {
+class CharacterSkills {
 
     companion object {
         val fireBallName = "Fire ball"
@@ -14,14 +14,13 @@ class MageSkills {
                 "Simple fire attack, adding one stack",
                 BasicSkill.convertItemListIntoJson(fireBallList),
                 1.2,
-                1,
+                0,
                 1.1,
                 BasicAttributes.SPELL_POWER,
                 SkillOccurrence.SINGLE,
                 1,
                 1,
-                SkillType.A0,
-                1
+                SkillType.A0
                 )
 
 
@@ -41,8 +40,7 @@ class MageSkills {
                 SkillOccurrence.SINGLE,
                 1,
                 2,
-                SkillType.A1,
-                5
+                SkillType.A1
                 )
 
 
@@ -62,8 +60,7 @@ class MageSkills {
                 SkillOccurrence.PERMANENT,
                 5,
                 5,
-                SkillType.A2,
-                10
+                SkillType.A2
                 )
 
         val daggerName = "Dagger rain"
@@ -80,8 +77,7 @@ class MageSkills {
                 SkillOccurrence.SINGLE,
                 1,
                 2,
-                SkillType.A3,
-                15)
+                SkillType.A3)
 
 
         val overloadName = "Magic overload"
@@ -98,8 +94,7 @@ class MageSkills {
                 SkillOccurrence.SINGLE,
                 1,
                 10,
-                SkillType.A4,
-                20)
+                SkillType.A4)
 
 
 
@@ -116,8 +111,7 @@ class MageSkills {
                 SkillOccurrence.SINGLE,
                 1,
                 2,
-                SkillType.D0,
-                1)
+                SkillType.D0)
 
 
         val frozenShieldName = "Frozen shield"
@@ -134,9 +128,7 @@ class MageSkills {
                 SkillOccurrence.PERMANENT,
                 3,
                 3,
-                SkillType.D1,
-                5
-                )
+                SkillType.D1)
 
 
         val regenerationName = "Regeneration"
@@ -152,8 +144,7 @@ class MageSkills {
                 SkillOccurrence.EVERY_TURN,
                 5,
                 5,
-                SkillType.D2,
-                10)
+                SkillType.D2)
 
         val firewallName = "Fire wall"
         val fireThorns = BasicSkill(SecondaryAtributes.MAGIC_THORNS, 10)
@@ -170,8 +161,7 @@ class MageSkills {
                 SkillOccurrence.PERMANENT,
                 5,
                 10,
-                SkillType.D3,
-                15)
+                SkillType.D3)
 
 
         val invisibleName = "Invisible"
@@ -187,8 +177,7 @@ class MageSkills {
                 SkillOccurrence.PERMANENT,
                 3,
                 10,
-                SkillType.D4,
-                20
+                SkillType.D4
         )
 
         val initalMageSkills = listOf(

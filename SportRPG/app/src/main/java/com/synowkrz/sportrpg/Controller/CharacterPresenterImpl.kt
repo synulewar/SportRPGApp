@@ -5,6 +5,7 @@ import android.view.View
 import com.synowkrz.sportrpg.Dao.UserDao
 import com.synowkrz.sportrpg.Model.BasicAttributes
 import com.synowkrz.sportrpg.Model.Skill
+import com.synowkrz.sportrpg.Model.SkillType
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.View.Character.CharacterView
 import io.reactivex.Maybe
@@ -13,6 +14,26 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : CharacterPresenter {
+    override fun onSkillChange(skillType: SkillType) {
+        if (mainUser.skillPoints > 0) {
+            mainUser.skillPoints -= 1
+            var skillList = Skill.convertStringIntoSkillList(mainUser.skills)
+            for (skill in skillList) {
+                if (skill.skillType == skillType) {
+                    skill.level += 1
+                }
+            }
+            var skillString = Skill.convertItemListIntoJson(skillList)
+            mainUser.skills = skillString
+            userDao.insert(mainUser)
+            refreshSkillView()
+        }
+    }
+
+    private fun refreshSkillView() {
+        var visbilityMap: Map<SkillType, Int> = createSkillVisbilityMap()
+        characterView.bindSkillFragmentData(Skill.convertStringIntoSkillList(mainUser.skills), visbilityMap, mainUser.skillPoints)
+    }
 
 
     companion object {
@@ -76,14 +97,24 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         }
         if (increase) mainUser.abilityPoints -= 1 else mainUser.abilityPoints += 1
         characterView.bindUserWithView(mainUser)
-        resolvedButtonsVisibility()
+        resolveAbilityButtonsVisibility()
     }
 
     override fun onSkillFragmentCreated() {
-        characterView.bindSkillFragmentData(Skill.convertStringIntoSkillList(mainUser.skills))
+        refreshSkillView()
     }
 
-    private fun resolvedButtonsVisibility() {
+    private fun createSkillVisbilityMap(): Map<SkillType, Int> {
+        var map = mutableMapOf<SkillType, Int>()
+        for (type in SkillType.values()) {
+            var condition = mainUser.skillPoints > 0
+                    && mainUser.level >= Skill.skillLevelLimit.getOrDefault(type, 0)
+            map.put(type, if (condition) View.VISIBLE else View.INVISIBLE)
+        }
+        return map
+    }
+
+    private fun resolveAbilityButtonsVisibility() {
         var visible : Int
         if (mainUser.abilityPoints == 0) visible = INVISBILE else visible = VISIBLE
         characterView.setIncreaseButtonsVisibility(visible)

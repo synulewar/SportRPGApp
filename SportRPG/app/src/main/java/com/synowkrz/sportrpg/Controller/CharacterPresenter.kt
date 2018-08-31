@@ -1,6 +1,7 @@
 package com.synowkrz.sportrpg.Controller
 
 import com.synowkrz.sportrpg.Model.BasicAttributes
+import com.synowkrz.sportrpg.Model.SkillType
 import com.synowkrz.sportrpg.View.Character.CharacterView
 
 interface CharacterPresenter  {
@@ -9,5 +10,5 @@ interface CharacterPresenter  {
     fun onAbilityChange(type: BasicAttributes, increase: Boolean)
     fun onConfirmButtonPressed()
     fun onSkillFragmentCreated()
-
+    fun onSkillChange(skillType: SkillType)
 }

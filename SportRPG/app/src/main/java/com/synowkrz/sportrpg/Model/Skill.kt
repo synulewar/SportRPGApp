@@ -15,8 +15,7 @@ data class Skill(@PrimaryKey val name: String,
                  var occurrence: SkillOccurrence,
                  var duration: Int,
                  var refresh: Int,
-                 var skillType: SkillType,
-                 var levelLimit: Int
+                 var skillType: SkillType
 ) {
 
     companion object {
@@ -30,5 +29,18 @@ data class Skill(@PrimaryKey val name: String,
             val gson = Gson()
             return gson.toJson(skillList)
         }
+
+        val skillLevelLimit = mapOf(
+                SkillType.A0 to 0,
+                SkillType.D0 to 0,
+                SkillType.A1 to 5,
+                SkillType.D1 to 5,
+                SkillType.A2 to 10,
+                SkillType.D2 to 10,
+                SkillType.A3 to 15,
+                SkillType.D3 to 15,
+                SkillType.A4 to 20,
+                SkillType.D4 to 20
+        )
     }
 }

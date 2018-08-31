@@ -98,6 +98,9 @@ class UserActivity : Activity(), UserView {
                 Log.d(TAG, "distance " + distance + " time " + time + " score " + score + " type " + type)
                 userController.updateUserData(type, time, distance, score.toLong())
             }
+        } else if (requestCode == ContractValues.CHARACTER_ACTIVITY) {
+            Log.d(TAG, "Refresh user data!")
+            userController.reloadUserData()
         }
     }
 
@@ -142,7 +145,7 @@ class UserActivity : Activity(), UserView {
     override fun startCharacterActivity(user: User) {
         var intent = Intent(this, CharacterActivity::class.java)
         intent.putExtra(ContractValues.EMAIL_KEY, user.email)
-        startActivity(intent)
+        startActivityForResult(intent, ContractValues.CHARACTER_ACTIVITY)
     }
 
     private fun verifyPermissionsAndStartTraining() {
@@ -153,5 +156,9 @@ class UserActivity : Activity(), UserView {
         } else {
             startChooserActivity()
         }
+    }
+
+    override fun onBackPressed() {
+        Log.d(TAG, "Block on back pressed")
     }
 }

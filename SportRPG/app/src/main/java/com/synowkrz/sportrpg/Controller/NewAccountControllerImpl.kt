@@ -60,7 +60,7 @@ class NewAccountControllerImpl @Inject constructor(var credentialsDao: Credentia
 
             CharacterType.WARRIOR -> Log.d(TAG, "Warrior skill list")
             CharacterType.MAGE -> {
-                var skills = MageSkills.getInitalMageSkills()
+                var skills = CharacterSkills.getInitalMageSkills()
                 Log.d(TAG, skills)
                 return skills
             }

@@ -1,5 +1,6 @@
 package com.synowkrz.sportrpg.View.Character
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
@@ -9,6 +10,7 @@ import com.synowkrz.sportrpg.Controller.CharacterPresenter
 import com.synowkrz.sportrpg.DaggerComponents.SportRPGApp
 import com.synowkrz.sportrpg.Model.BasicAttributes
 import com.synowkrz.sportrpg.Model.Skill
+import com.synowkrz.sportrpg.Model.SkillType
 import com.synowkrz.sportrpg.Model.User
 import com.synowkrz.sportrpg.R
 import javax.inject.Inject
@@ -59,8 +61,8 @@ class CharacterActivity : FragmentActivity(), CharacterView{
         abilityFragment?.setAllButtonsVisibility(visible)
     }
 
-    override fun bindSkillFragmentData(skillList: List<Skill>) {
-        skillFragment?.bindSkillFragmentData(skillList)
+    override fun bindSkillFragmentData(skillList : List<Skill>, visbilityMap: Map<SkillType, Int>, skillPoint: Int) {
+        skillFragment?.bindSkillFragmentData(skillList, visbilityMap, skillPoint)
     }
 
     override fun initAbilityFragment(fragment: AbilityFragment) {
@@ -91,6 +93,7 @@ class CharacterActivity : FragmentActivity(), CharacterView{
             when(menuItem.itemId) {
                 R.id.action_home -> {
                     Log.d(TAG, "ET go home")
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }
                 R.id.action_abilities -> {
@@ -118,6 +121,10 @@ class CharacterActivity : FragmentActivity(), CharacterView{
     private fun replaceFragment(fragment: Fragment) {
         unBindFragments()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+    }
+
+    override fun onBackPressed() {
+        Log.d(TAG, "Block on back pressed")
     }
 
 

@@ -40,14 +40,14 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:weightSum="2"
-            android:padding="20dp">
+            android:padding="@dimen/skillLayotPadding">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_A0"
@@ -63,17 +63,28 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_A0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_A0"
                         android:background="@drawable/sword"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_A0"
+                        android:id="@+id/skillLevel_A0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/SkillLevelStyle"
                         android:text="0"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
@@ -85,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_D0"
@@ -101,19 +112,30 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_D0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_D0"
                         android:background="@drawable/shield"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_D0"
+                        android:id="@+id/skillLevel_D0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="0" />
+                        style="@style/SkillLevelStyle"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -124,14 +146,14 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:weightSum="2"
-            android:padding="20dp">
+            android:padding="@dimen/skillLayotPadding">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_A1"
@@ -145,19 +167,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_gravity="center_horizontal">
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/skillName_A1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <ImageButton
                         android:id="@+id/skillPicture_A1"
                         android:background="@drawable/sword"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_A1"
+                        android:id="@+id/skillLevel_A1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/SkillLevelStyle"
                         android:text="0"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
@@ -169,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_D1"
@@ -185,24 +218,33 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_D1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_D1"
                         android:background="@drawable/shield"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_D1"
+                        android:id="@+id/skillLevel_D1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="0"/>
+                        style="@style/SkillLevelStyle"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -210,14 +252,14 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:weightSum="2"
-            android:padding="20dp">
+            android:padding="@dimen/skillLayotPadding">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_A2"
@@ -233,17 +275,28 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_A2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_A2"
                         android:background="@drawable/sword"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_A2"
+                        android:id="@+id/skillLevel_A2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/SkillLevelStyle"
                         android:text="0"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
@@ -255,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_D2"
@@ -271,19 +324,30 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_D2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_D2"
                         android:background="@drawable/shield"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_D2"
+                        android:id="@+id/skillLevel_D2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="0"/>
+                        style="@style/SkillLevelStyle"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -294,14 +358,14 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:weightSum="2"
-            android:padding="20dp">
+            android:padding="@dimen/skillLayotPadding">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_A3"
@@ -317,17 +381,28 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_A3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_A3"
                         android:background="@drawable/sword"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_A3"
+                        android:id="@+id/skillLevel_A3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/SkillLevelStyle"
                         android:text="0"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
@@ -339,7 +414,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_D3"
@@ -355,19 +430,30 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_D3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_D3"
                         android:background="@drawable/shield"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_D3"
+                        android:id="@+id/skillLevel_D3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="0"/>
+                        style="@style/SkillLevelStyle"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -378,14 +464,14 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:weightSum="2"
-            android:padding="20dp">
+            android:padding="@dimen/skillLayotPadding">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_A4"
@@ -401,17 +487,28 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_A4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_A4"
                         android:background="@drawable/sword"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_A4"
+                        android:id="@+id/skillLevel_A4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/SkillLevelStyle"
                         android:text="0"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
@@ -423,7 +520,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/buttonSkillLvlUp_D4"
@@ -439,25 +536,33 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/skillName_D4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        style="@style/SkillNameStyle"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
+
                     <ImageButton
                         android:id="@+id/skillPicture_D4"
                         android:background="@drawable/shield"
                         android:layout_width="@dimen/skill_picture_size"
                         android:layout_height="@dimen/skill_picture_size"
-                        android:layout_marginBottom="@dimen/small_margin"/>
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:layout_gravity="center_horizontal"/>
 
                     <TextView
-                        android:id="@+id/skillText_D4"
+                        android:id="@+id/skillLevel_D4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="0"/>
+                        style="@style/SkillLevelStyle"
+                        android:text="0"
+                        android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
     
     
