@@ -3,10 +3,7 @@ package com.synowkrz.sportrpg.Controller
 import android.util.Log
 import android.view.View
 import com.synowkrz.sportrpg.Dao.UserDao
-import com.synowkrz.sportrpg.Model.BasicAttributes
-import com.synowkrz.sportrpg.Model.Skill
-import com.synowkrz.sportrpg.Model.SkillType
-import com.synowkrz.sportrpg.Model.User
+import com.synowkrz.sportrpg.Model.*
 import com.synowkrz.sportrpg.View.Character.CharacterView
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,10 +11,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : CharacterPresenter {
+
     override fun onSkillChange(skillType: SkillType) {
         if (mainUser.skillPoints > 0) {
             mainUser.skillPoints -= 1
-            var skillList = Skill.convertStringIntoSkillList(mainUser.skills)
+            var skillList = getUserSkills()
             for (skill in skillList) {
                 if (skill.skillType == skillType) {
                     skill.level += 1
@@ -104,6 +102,35 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         refreshSkillView()
     }
 
+    override fun onSkillPictureClicked(skillType: SkillType) {
+        var skill = getSkillByType(skillType)
+        var abiityValue = 0
+        when(skill.affectingAtribute) {
+            BasicAttributes.STRENGTH -> abiityValue = mainUser.strength
+            BasicAttributes.AGILITY -> abiityValue = mainUser.agility
+            BasicAttributes.SPELL_POWER -> abiityValue = mainUser.spellPower
+            BasicAttributes.VITALITY -> abiityValue = mainUser.vitality
+        }
+        characterView.showDetailDialog(abiityValue, skill)
+    }
+
+    private fun getUserSkills(): List<Skill> {
+        return Skill.convertStringIntoSkillList(mainUser.skills)
+    }
+
+    private fun getSkillByType(type: SkillType): Skill {
+        var skillList = getUserSkills()
+        var resutSkill = CharacterSkills.TEST_SKILL
+        for (skill in skillList) {
+            if (skill.skillType.equals(type)) {
+                resutSkill = skill
+                break
+            }
+        }
+        return resutSkill
+    }
+
+
     private fun createSkillVisbilityMap(): Map<SkillType, Int> {
         var map = mutableMapOf<SkillType, Int>()
         for (type in SkillType.values()) {
@@ -134,5 +161,4 @@ class CharacterPresenterImpl @Inject constructor(var userDao: UserDao) : Charact
         if (mainUser.equals(lastConfirmedUser))  visible = INVISBILE else visible = VISIBLE
         characterView.setConfirmButtonVisibility(visible)
     }
-
 }

@@ -65,6 +65,10 @@ class CharacterActivity : FragmentActivity(), CharacterView{
         skillFragment?.bindSkillFragmentData(skillList, visbilityMap, skillPoint)
     }
 
+    override fun showDetailDialog(ability: Int, skill: Skill) {
+        skillFragment?.showDetailDialog(ability, skill)
+    }
+
     override fun initAbilityFragment(fragment: AbilityFragment) {
         abilityFragment = fragment
     }

@@ -11,4 +11,5 @@ interface CharacterPresenter  {
     fun onConfirmButtonPressed()
     fun onSkillFragmentCreated()
     fun onSkillChange(skillType: SkillType)
+    fun onSkillPictureClicked(skillType: SkillType)
 }

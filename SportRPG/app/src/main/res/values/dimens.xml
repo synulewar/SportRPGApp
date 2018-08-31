@@ -6,6 +6,7 @@
     <dimen name="mid_margin">15dp</dimen>
     <dimen name="small_margin">5dp</dimen>
     <dimen name="skill_picture_size">40dp</dimen>
+    <dimen name="dialog_skill_picture_size">100dp</dimen>
     <dimen name="skill_level_size">10sp</dimen>
     <dimen name="skillLayotPadding">5dp</dimen>
 </resources>

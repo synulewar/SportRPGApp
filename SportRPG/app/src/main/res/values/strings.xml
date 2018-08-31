@@ -42,6 +42,11 @@
     <string name="hint_warrior">Based on strength and double hand weapon</string>
     <string name="hint_mage">Kill enemys with arcane powers</string>
     <string name="hint_rogue">Child of the shadow. Poison killer</string>
+    <string name="next_level">Next level</string>
+    <string name="as">dupa</string>
+
+    <string name="current_lelvel_dialog_string">Current level: %d</string>
+    <string name="close">Close</string>
 
     <string-array name="character_type">
         <item>@string/wariorr</item>

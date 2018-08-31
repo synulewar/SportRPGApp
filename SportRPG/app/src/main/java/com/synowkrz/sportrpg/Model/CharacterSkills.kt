@@ -10,6 +10,20 @@ class CharacterSkills {
         val fireDmage = BasicSkill(SecondaryAtributes.MAGIC_DMG, 10)
         val fireStack = BasicSkill(SecondaryAtributes.STACK, 1)
         val fireBallList = listOf(fireDmage, fireStack)
+
+        val TEST_SKILL = Skill(fireBallName ,
+                "Simple fire attack, adding one stack",
+                BasicSkill.convertItemListIntoJson(fireBallList),
+                1.2,
+                0,
+                1.1,
+                BasicAttributes.SPELL_POWER,
+                SkillOccurrence.SINGLE,
+                1,
+                1,
+                SkillType.A0
+        )
+
         val FIRE_BALL = Skill(fireBallName ,
                 "Simple fire attack, adding one stack",
                 BasicSkill.convertItemListIntoJson(fireBallList),

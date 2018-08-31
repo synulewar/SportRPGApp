@@ -16,7 +16,6 @@ import com.synowkrz.sportrpg.R
 import kotlinx.android.synthetic.main.skill_fragment.*
 
 class SkillFragment: Fragment(), SkillView {
-
     val TAG = "KRZYS"
 
     var characterView: CharacterView? = null
@@ -57,6 +56,18 @@ class SkillFragment: Fragment(), SkillView {
         buttonSkillLvlUp_D2.setOnClickListener { characterPresenter?.onSkillChange(SkillType.D2) }
         buttonSkillLvlUp_D3.setOnClickListener { characterPresenter?.onSkillChange(SkillType.D3) }
         buttonSkillLvlUp_D4.setOnClickListener { characterPresenter?.onSkillChange(SkillType.D4) }
+
+        skillPicture_A0.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.A0)}
+        skillPicture_A1.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.A1)}
+        skillPicture_A2.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.A2)}
+        skillPicture_A3.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.A3)}
+        skillPicture_A4.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.A4)}
+
+        skillPicture_D0.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.D0)}
+        skillPicture_D1.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.D1)}
+        skillPicture_D2.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.D2)}
+        skillPicture_D3.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.D3)}
+        skillPicture_D4.setOnClickListener { characterPresenter?.onSkillPictureClicked(SkillType.D4)}
     }
 
     override fun bindSkillFragmentData(skillList : List<Skill>, visbilityMap: Map<SkillType, Int>, skillPoint: Int) {
@@ -127,5 +138,10 @@ class SkillFragment: Fragment(), SkillView {
                 SkillType.DEFAULT -> Log.d(TAG, "This should never happen")
             }
         }
+    }
+
+    override fun showDetailDialog(ability: Int, skill: Skill) {
+        var dialog = SkillDetailDialog(mContext, ability, skill)
+        dialog.show()
     }
 }
